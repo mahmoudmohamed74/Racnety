@@ -53,10 +53,11 @@ class CustomAreaWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: AppSize.s10,
+                  width: AppSize.s20,
                 ),
                 Image.asset(
-                  ImageAssets.class_,
+                  ImageAssets.slotImg,
+                  scale: 4,
                 ),
               ],
             ),

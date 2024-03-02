@@ -17,101 +17,96 @@ class BookingSlotsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBarWidget(
-          title: '',
-          isBack: true,
-        ),
         body: BlocConsumer<BookingCubit, BookingState>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            if (state.isLoading) {
-              return const Center(child: LoadingWidget());
-            }
-            return Stack(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state.isLoading) {
+          return const Center(child: LoadingWidget());
+        }
+        return Stack(
+          children: [
+            Image.asset(
+              ImageAssets.areaBackGrd,
+              fit: BoxFit.fill,
+              height: double.infinity,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  ImageAssets.areaBackGrd,
-                  fit: BoxFit.fill,
-                  height: double.infinity,
+                AppBarWidget(
+                  title: '',
+                  isBack: true,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        height: AppSize.s50,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          color: ColorManager.white,
-                          borderRadius: BorderRadius.circular(
-                            AppSize.s12,
-                          ),
-                          border: Border.all(
-                            color: ColorManager.black, // Border color
-                            width: 1.0, // Border width
-                          ),
-                        ),
-                        child: Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Slots in ${areaModel?.name}',
-                                style: const TextStyle(
-                                  fontSize: AppSize.s20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: AppSize.s10,
-                              ),
-                              Image.asset(
-                                ImageAssets.class_,
-                                scale: 1.8,
-                              ),
-                            ],
-                          ),
-                        ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    height: AppSize.s50,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      color: ColorManager.white,
+                      borderRadius: BorderRadius.circular(
+                        AppSize.s12,
                       ),
                     ),
-                    const SizedBox(
-                      height: AppSize.s20,
-                    ),
-                    ConditionalBuilder(
-                      condition: state.slotsList.isNotEmpty,
-                      builder: (context) => Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.only(
-                            right: AppSize.s8,
-                            left: AppSize.s8,
-                          ),
-                          // color: Colors.grey[300],
-                          child: GridView.count(
-                            shrinkWrap: true,
-                            physics: const BouncingScrollPhysics(),
-                            mainAxisSpacing: AppSize.s30,
-                            crossAxisSpacing: AppSize.s50,
-                            crossAxisCount: 2,
-                            childAspectRatio: 1 / 1,
-                            children: List.generate(
-                              state.slotsList.length,
-                              (index) => CustomSlotsWidget(
-                                slotsModel: state.slotsList[index],
-                                localReservedSlots: state.localSlots,
-                              ),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Slots in ${areaModel?.name}',
+                            style: const TextStyle(
+                              fontSize: AppSize.s20,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
+                          const SizedBox(
+                            width: AppSize.s10,
+                          ),
+                          Image.asset(
+                            ImageAssets.class_,
+                            scale: 1.8,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: AppSize.s20,
+                ),
+                ConditionalBuilder(
+                  condition: state.slotsList.isNotEmpty,
+                  builder: (context) => Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(
+                        right: AppSize.s8,
+                        left: AppSize.s8,
+                      ),
+                      // color: Colors.grey[300],
+                      child: GridView.count(
+                        shrinkWrap: true,
+                        physics: const BouncingScrollPhysics(),
+                        mainAxisSpacing: AppSize.s30,
+                        crossAxisSpacing: AppSize.s50,
+                        crossAxisCount: 2,
+                        childAspectRatio: 1 / 1,
+                        children: List.generate(
+                          state.slotsList.length,
+                          (index) => CustomSlotsWidget(
+                            slotsModel: state.slotsList[index],
+                            localReservedSlots: state.localSlots,
+                          ),
                         ),
                       ),
-                      fallback: (context) =>
-                          const Text("No slots are available."),
                     ),
-                  ],
+                  ),
+                  fallback: (context) => const Text("No slots are available."),
                 ),
               ],
-            );
-          },
-        ));
+            ),
+          ],
+        );
+      },
+    ));
   }
 }

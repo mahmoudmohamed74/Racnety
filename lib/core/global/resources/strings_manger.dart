@@ -82,6 +82,7 @@ class AppStrings {
   static const String haveAccount = "Already have an account ?";
   static const String or = "OR";
   static const String confirmBooking = "Confirm Booking";
+  static const String getStart = "Get started";
 
   // layout
 

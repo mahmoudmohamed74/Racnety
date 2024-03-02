@@ -95,6 +95,11 @@ flutter:
     - assets/images/home.jpg
     - assets/images/changeoil.jpg
     - assets/images/area_back.jpg
+    - assets/images/parking.png
+    - assets/images/available.png
+    - assets/images/reserved.png
+    - assets/images/reserved.png
+    - assets/images/dark_logo.png
   fonts:
     - family: IconBroken
       fonts:

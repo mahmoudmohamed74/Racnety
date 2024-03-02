@@ -34,7 +34,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       // toolbarHeight: MediaQuery.of(context).size.height * .2,
-      backgroundColor: ColorManager.white,
+      backgroundColor: Colors.transparent,
       leading: isBack
           ? IconButton(
               onPressed: () {
@@ -60,6 +60,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             ),
       title: Text(
         title!,
+        style: TextStyle(
+          color: ColorManager.white,
+        ),
       ),
       actions: [
         if (isTextButton)

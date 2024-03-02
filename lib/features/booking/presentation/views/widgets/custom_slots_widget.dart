@@ -60,10 +60,14 @@ class CustomSlotsWidget extends StatelessWidget {
               //   color: ColorManager.black,
               // ),
               if (slotsModel.isDisabled!)
-                Icon(
-                  Icons.accessible_outlined,
-                  size: AppSize.s100,
-                  color: ColorManager.black,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    ImageAssets.accParking,
+                    // fit: BoxFit.fill,
+                    height: 80,
+                    width: 80,
+                  ),
                 ),
               if (!slotsModel.isDisabled!)
                 Padding(

@@ -19,10 +19,6 @@ class BookingDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        isBack: true,
-        title: '',
-      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: BlocConsumer<BookingCubit, BookingState>(
@@ -39,6 +35,10 @@ class BookingDetailsScreen extends StatelessWidget {
           builder: (context, state) {
             return Column(
               children: [
+                AppBarWidget(
+                  isBack: true,
+                  title: '',
+                ),
                 Card(
                   elevation: 2,
                   child: Row(

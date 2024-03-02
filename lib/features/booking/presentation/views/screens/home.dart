@@ -1,16 +1,20 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
+import 'package:parking_app/core/global/resources/strings_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_pref.dart';
+import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/core/widgets/text_button_widget.dart';
 import 'package:parking_app/features/booking/data/models/service_model.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
-import 'package:parking_app/features/payment/paypal_payment.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -18,10 +22,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        title: 'Home',
-        isBack: false,
-      ),
       drawer: Align(
         alignment: Alignment.topLeft,
         child: MyDrawer(),
@@ -33,61 +33,64 @@ class HomeScreen extends StatelessWidget {
             fit: BoxFit.fill,
             height: double.infinity,
           ),
-          Column(
-            children: [
-              const SizedBox(
-                height: AppSize.s50,
-              ),
-              Image(
-                fit: BoxFit.fitHeight,
-                height: AppSize.s150,
-                image: AssetImage(
-                  ImageAssets.appLogo,
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                AppBarWidget(
+                  title: 'welcome , ',
+                  isBack: false,
                 ),
-              ),
-              const SizedBox(
-                height: AppSize.s50,
-              ),
-              Center(
-                  child: TextButton(
-                child: Text('paypal'),
-                onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => PaypalPayment(
-                  //       amount: 20,
-                  //       orderId: 'orderModel.orderDocId',
-                  //       earnestIsPaid: false,
-                  //       priceIsPaid: false,
-                  //     ),
-                  //   ),
-                  // );
-
-                  // context.read<BookingCubit>().addSlot(
-                  //       userId: 2.toString(),
-                  //       slot: 2,
-                  //     );
-                  // context.read<BookingCubit>().addService(
-                  //       userId: 2.toString(),
-                  //       service: ServiceModel(
-                  //         id: 1,
-                  //         name: "car wash",
-                  //         pic: "",
-                  //         serviceCost: 200,
-                  //       ),
-                  //     );
-                  context
-                      .read<BookingCubit>()
-                      .loadServices(userId: 2.toString());
-                },
-              )
-                  // Text(
-                  //   "Parking app for malls is to provide a parking solution \nthat includes features to enhance the parking \nexperience ,parking experience for Shopping Malls.",
-                  //   textAlign: TextAlign.center,
-                  // ),
+                const SizedBox(
+                  height: AppSize.s50,
+                ),
+                Image(
+                  // fit: BoxFit.fitHeight,
+                  height: AppSize.s250,
+                  image: AssetImage(
+                    ImageAssets.darkLogo,
                   ),
-            ],
+                ),
+                const SizedBox(
+                  height: AppSize.s150,
+                ),
+                Center(
+                  child: Column(
+                    children: [
+                      TextButtonWidget(
+                        icon: Container(
+                          width: AppSize.s0,
+                        ),
+                        borderColor: ColorManager.primary,
+                        backGroundColor: ColorManager.primary,
+                        textColor: ColorManager.white,
+                        width: AppSize.s150,
+                        height: AppSize.s52,
+                        text: AppStrings.getStart,
+                        fontWeight: FontWeight.bold,
+                        onTap: () {
+                          context.read<BookingCubit>().getGarages();
+                          Navigator.pushNamed(
+                            context,
+                            Routes.newBooking,
+                          );
+                        },
+                      ),
+                      SizedBox(
+                        height: AppSize.s50,
+                      ),
+                      Text(
+                        'Parking Garage app For Malls \nBook your slot easy',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: ColorManager.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
