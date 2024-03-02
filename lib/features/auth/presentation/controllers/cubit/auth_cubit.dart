@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:racnety/core/requests/login_request.dart';
+import 'package:racnety/features/auth/data/models/user_model.dart';
 
 import '../../../../../core/network/connectivity_service.dart';
 import '../../../data/repos/auth_repo.dart';
@@ -16,8 +18,10 @@ class AuthCubit extends Cubit<AuthState> {
     this.baseAuthRepo,
   ) : super(AuthInitial());
 
+  static AuthCubit get(context) => BlocProvider.of(context);
+
   Future<void> fetchProductsCubit() async {
-    // emit(ProductsLoadingState());
+    emit(AuthLogInLoadingState());
     try {
       if (await connectivityService.isOnline()) {
         var result = await baseAuthRepo.login(
@@ -28,7 +32,9 @@ class AuthCubit extends Cubit<AuthState> {
         );
 
         result.fold(
-          (failure) {},
+          (failure) {
+
+          },
           (products) async {},
         );
       } else {}
