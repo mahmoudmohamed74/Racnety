@@ -44,11 +44,11 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
   final TextEditingController _emailEditingController = TextEditingController();
 
   final TextEditingController _passwordEditingController =
-  TextEditingController();
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -94,7 +94,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                   controller: _emailEditingController,
                   type: TextInputType.emailAddress,
                   validator: (input) =>
-                  input!.isValidEmail() ? null : AppStrings.emailError,
+                      input!.isValidEmail() ? null : AppStrings.emailError,
                   prefix: IconBroken.Profile,
                   obscureText: false,
                 ),
@@ -103,8 +103,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                   hintText: AppStrings.passwordHint,
                   controller: _passwordEditingController,
                   type: TextInputType.text,
-                  validator: (input) =>
-                  input!.isValidPassword()
+                  validator: (input) => input!.isValidPassword()
                       ? null
                       : AppStrings.passwordError,
                   prefix: IconBroken.Lock,
