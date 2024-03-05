@@ -1,58 +1,25 @@
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// ignore_for_file: constant_identifier_names
 
-class AppConstants {
-  static final double defaultPadding = 12.h;
-  static final double defaultPaddingW = 12.w;
-  static final double padding15h = 15.h;
-  static final double padding50h = 50.h;
-  static final double padding30h = 30.h;
-  static final double padding25h = 25.h;
-  static final double padding45h = 45.h;
-  static final double padding40h = 40.h;
-  static final double padding10h = 10.h;
-  static final double padding12h = 12.h;
-  static final double padding20h = 20.h;
-  static final double padding10w = 10.w;
-  static final double padding8w = 8.w;
-  static final double padding15w = 15.w;
-  static final double padding5w = 5.w;
-  static final double padding3w = 3.w;
-  static final double padding4w = 4.w;
-  static final double padding8h = 8.h;
-  static final double padding2h = 2.h;
-  static final double padding5h = 5.h;
-  static final double padding4h = 4.h;
-  static final double padding3h = 3.h;
-  static final double radius15r = 15.r;
-  static final double radius8r = 8.r;
-  static final double radius6r = 6.r;
-  static final double radius10r = 10.r;
-  static final double radius5r = 5.r;
-  static final double radius30r = 30.r;
-  static final double radius20r = 20.r;
-  static final double radius25r = 25.r;
-  static final double radius28r = 28.r;
-  static final double radius12r = 12.r;
-  static final double iconSize24 = 24.sp;
-  static final double iconSize23 = 23.sp;
-  static final double iconSize18 = 18.sp;
-  static final double iconSize12 = 12.sp;
-  static final double iconSize15 = 15.sp;
-  static final double iconSize28 = 28.sp;
-  static final double iconSize33 = 33.sp;
-  static final double iconSize22 = 22.sp;
-  static final double iconSize20 = 20.sp;
-  static final double size10w = 10.w;
-  static final double size10h = 10.h;
-  static final double size5h = 5.h;
-  static final double size100w = 100.w;
-  static final double size110w = 110.w;
-  static final double size30h = 30.h;
-  static final double size40h = 40.h;
-  static final double size50h = 50.h;
-  static final double size100h = 100.h;
-  static final double size180h = 180.h;
-  static final double size300h = 300.h;
-  static final double size200h = 200.h;
-  static final double size200w = 200.w;
+class Constants {
+  // static const String baseUrl = "http://minafarid246.mocklab.io";
+  // static const String empty = "";
+  // static const String token = "SEND TOKEN HERE";
+  static const String empty = "";
+  static const int APPID = 456506763;
+  static const String APPSign =
+      "ee68e6d728e58732e8ee47e4629cacbcf894c7cabe06440c6baff477caaf4cd1";
+  static const int zero = 0;
+  static const int three = 3;
+  static const int five = 5;
+  static const double zeroDouble = 0.0;
+  static const List<String> emptyList = [];
+  static const bool FALSE = false;
+
+  // static const int apiTimeOut = 60000;
+  static bool isLogout = false;
+
+  static const String defaultDoctorImage =
+      "https://cdn-icons-png.flaticon.com/512/3774/3774299.png";
+  static const String defaultPatientImage =
+      "https://www.immunology.virginia.edu/wp-content/uploads/2021/08/blank-person-icon.png";
 }

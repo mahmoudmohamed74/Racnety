@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, avoid_print
 
 // import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,12 @@ import 'package:racnety/core/global/resources/strings_manger.dart';
 import 'package:racnety/core/global/resources/values_manger.dart';
 import 'package:racnety/core/themes/color_manager.dart';
 import 'package:racnety/core/utils/functions.dart';
+import 'package:racnety/core/widgets/loading_widget.dart';
+import 'package:racnety/core/widgets/text_button_widget.dart';
 import 'package:racnety/features/auth/presentation/controllers/cubit/auth_cubit.dart';
+import 'package:racnety/features/auth/presentation/views/screens/register_screen.dart';
 import 'package:racnety/features/auth/presentation/views/widgets/form_field_widget.dart';
+import 'package:racnety/features/auth/presentation/views/widgets/horizontal_or_line_widget.dart';
 // import 'package:health_care/authentication/domain/usecase/user_login_usecase.dart';
 // import 'package:health_care/authentication/presentation/controller/auth_cubit.dart';
 // import 'package:health_care/authentication/presentation/widgets/form_field_widget.dart';
@@ -139,58 +144,56 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                     ),
                   ),
                 ),
-                // ConditionalBuilder(
-                //   condition: state is! AuthLogInLoadingState,
-                //   builder: (context) =>
-                //       TextButtonWidget(
-                //         icon: Container(
-                //           width: AppSize.s0,
-                //         ),
-                //         borderColor: ColorManager.primary,
-                //         backGroundColor: ColorManager.primary,
-                //         textColor: ColorManager.white,
-                //         width: AppSize.s330,
-                //         height: AppSize.s52,
-                //         text: AppStrings.logIn,
-                //         fontWeight: FontWeight.bold,
-                //         onTap: () async {
-                //           if (_formKey.currentState!.validate()) {
-                //             await cubit.userLogin(
-                //               UserLoginUseCaseInput(
-                //                 _emailEditingController.text,
-                //                 _passwordEditingController.text,
-                //               ),
-                //             );
-                //           }
-                //           // cubit.clear();
-                //
-                //         },
-                //       ),
-                //   fallback: (context) => const LoadingWidget(),
-                // ),
-                // const HorizontalOrLineWidget(
-                //   label: AppStrings.or,
-                //   height: AppSize.s60,
-                // ),
-                // TextButtonWidget(
-                //   borderColor: ColorManager.grey,
-                //   backGroundColor: ColorManager.white,
-                //   textColor: ColorManager.black,
-                //   width: AppSize.s330,
-                //   height: AppSize.s52,
-                //   text: AppStrings.signUpWithGoogle,
-                //   icon: const SizedBox(
-                //     height: AppSize.s33,
-                //     child: Image(
-                //       image: AssetImage(
-                //         ImageAssets.googleLogoIcon,
-                //       ),
-                //     ),
-                //   ),
-                //   onTap: () {
-                //     if (_formKey.currentState!.validate()) {}
-                //   },
-                // ),
+                ConditionalBuilder(
+                  condition: true,
+                  builder: (context) => TextButtonWidget(
+                    icon: Container(
+                      width: AppSize.s0,
+                    ),
+                    borderColor: ColorManager.primary,
+                    backGroundColor: ColorManager.primary,
+                    textColor: ColorManager.white,
+                    width: AppSize.s330,
+                    height: AppSize.s52,
+                    text: AppStrings.logIn,
+                    fontWeight: FontWeight.bold,
+                    onTap: () async {
+                      if (_formKey.currentState!.validate()) {
+                        // await cubit.userLogin(
+                        //   UserLoginUseCaseInput(
+                        //     _emailEditingController.text,
+                        //     _passwordEditingController.text,
+                        //   ),
+                        // );
+                      }
+                      // cubit.clear();
+                    },
+                  ),
+                  fallback: (context) => const LoadingWidget(),
+                ),
+                const HorizontalOrLineWidget(
+                  label: AppStrings.or,
+                  height: AppSize.s60,
+                ),
+                TextButtonWidget(
+                  borderColor: ColorManager.grey,
+                  backGroundColor: ColorManager.white,
+                  textColor: ColorManager.black,
+                  width: AppSize.s330,
+                  height: AppSize.s52,
+                  text: AppStrings.signUpWithGoogle,
+                  icon: const SizedBox(
+                    height: AppSize.s33,
+                    child: Image(
+                      image: AssetImage(
+                        ImageAssets.googleLogoIcon,
+                      ),
+                    ),
+                  ),
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {}
+                  },
+                ),
                 const SizedBox(
                   height: AppSize.s18,
                 ),
@@ -207,10 +210,10 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                         ),
                       ),
                       onPressed: () {
-                        // Navigator.pushNamed(
-                        //   context,
-                        //   Routes.toggleRoute,
-                        // );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserRegisterScreen()));
                       },
                     ),
                   ],
