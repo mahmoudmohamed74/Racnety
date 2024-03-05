@@ -7,12 +7,9 @@ import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/strings_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
-import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/app_router.dart';
-import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
-import 'package:parking_app/features/booking/data/models/service_model.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 
