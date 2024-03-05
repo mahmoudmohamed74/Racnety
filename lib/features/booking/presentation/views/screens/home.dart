@@ -10,6 +10,7 @@ import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
+import 'package:parking_app/features/auth/presentation/controllers/cubit/auth_cubit.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 
@@ -34,7 +35,8 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 AppBarWidget(
-                  title: 'welcome , ',
+                  title:
+                      'welcome , ${context.read<AuthCubit>().userModel?.userName}',
                   isBack: false,
                 ),
                 const SizedBox(
