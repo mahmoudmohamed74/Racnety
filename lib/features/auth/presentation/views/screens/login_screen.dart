@@ -1,10 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, avoid_print
 
-// import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:racnety/core/assets/app_assets.dart';
 import 'package:racnety/core/global/resources/icons_manger.dart';
 import 'package:racnety/core/global/resources/strings_manger.dart';
@@ -13,29 +10,12 @@ import 'package:racnety/core/themes/color_manager.dart';
 import 'package:racnety/core/utils/functions.dart';
 import 'package:racnety/core/widgets/loading_widget.dart';
 import 'package:racnety/core/widgets/text_button_widget.dart';
-import 'package:racnety/features/auth/presentation/controllers/cubit/auth_cubit.dart';
 import 'package:racnety/features/auth/presentation/views/screens/register_screen.dart';
 import 'package:racnety/features/auth/presentation/views/widgets/form_field_widget.dart';
 import 'package:racnety/features/auth/presentation/views/widgets/horizontal_or_line_widget.dart';
-// import 'package:health_care/authentication/domain/usecase/user_login_usecase.dart';
-// import 'package:health_care/authentication/presentation/controller/auth_cubit.dart';
-// import 'package:health_care/authentication/presentation/widgets/form_field_widget.dart';
-// import 'package:health_care/core/widgets/text_button_widget.dart';
-// import 'package:health_care/authentication/presentation/widgets/horizontal_or_line_widget.dart';
-// import 'package:health_care/core/app/app_prefs.dart';
-// import 'package:health_care/core/assets/app_assets.dart';
-// import 'package:health_care/core/global/resources/icons_manger.dart';
-// import 'package:health_care/core/global/resources/strings_manger.dart';
-// import 'package:health_care/core/global/resources/values_manger.dart';
-// import 'package:health_care/core/global/theme/app_color/color_manager.dart';
-// import 'package:health_care/core/routes/app_routes.dart';
-// import 'package:health_care/core/services/services_locator.dart';
-// import 'package:health_care/core/utils/functions.dart';
-// import 'package:health_care/core/widgets/loading_widget.dart';
-// import 'package:health_care/core/widgets/snack_bar_widget.dart';
 
 class UserLoginScreen extends StatefulWidget {
-  UserLoginScreen({Key? key}) : super(key: key);
+  const UserLoginScreen({Key? key}) : super(key: key);
 
   @override
   State<UserLoginScreen> createState() => _UserLoginScreenState();

@@ -26,10 +26,6 @@ class UserRegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        isBack: true,
-        title: '',
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -39,6 +35,9 @@ class UserRegisterScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                const SizedBox(
+                  height: AppSize.s50,
+                ),
                 const Image(
                   fit: BoxFit.fitHeight,
                   height: AppSize.s150,

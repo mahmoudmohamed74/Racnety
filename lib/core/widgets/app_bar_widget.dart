@@ -12,10 +12,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.textButton,
     this.isBack = false,
     this.isBackWithFunc = false,
-    this.isSearch = false,
-    this.isHome = false,
     this.isTextButton = false,
-    this.controller,
     this.onSearch,
     this.onTap,
     this.onTapBackFunc,
@@ -26,10 +23,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   String? textButton;
   bool isBack = false;
   bool isBackWithFunc = false;
-  bool isSearch = false;
-  bool isHome = false;
   bool isTextButton = false;
-  TextEditingController? controller;
   VoidCallback? onSearch;
   VoidCallback? onTap;
   Function? onTapBackFunc;
@@ -56,43 +50,19 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 color: ColorManager.primary,
               ),
             )
-          : Image.asset(
-              ImageAssets.splashLogo,
-              scale: 1.4,
+          : IconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              icon: Icon(
+                Icons.menu,
+                color: ColorManager.primary,
+              ),
             ),
-      title:
-          // isSearch
-          //     ? SizedBox(
-          //         width: MediaQuery.of(context).size.width * .866,
-          //         child: SearchBarWidget(
-          //           readOnly: false,
-          //           onTap: () {},
-          //           hintText: 'search...',
-          //           controller: controller,
-          //           onSearch: onSearch,
-          //         ),
-          //       )
-          //     :
-          Text(
+      title: Text(
         title!,
       ),
       actions: [
-        if (isHome)
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              IconBroken.Notification,
-              color: ColorManager.primary,
-            ),
-          ),
-        if (isHome)
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              IconBroken.Heart,
-              color: ColorManager.primary,
-            ),
-          ),
         if (isTextButton)
           Padding(
             padding: const EdgeInsets.all(AppPadding.p12),

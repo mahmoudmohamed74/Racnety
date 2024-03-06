@@ -7,6 +7,7 @@ import 'package:racnety/core/requests/register_request.dart';
 import 'package:racnety/core/utils/service_locator.dart';
 import 'package:racnety/features/auth/data/repos/auth_repo.dart';
 import 'package:racnety/features/auth/presentation/views/screens/login_screen.dart';
+import 'package:racnety/features/booking/presentation/views/screens/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home:  UserLoginScreen(),
+      home: HomeScreen(),
     );
   }
 }
