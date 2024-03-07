@@ -74,6 +74,7 @@ flutter:
     - assets/images/on_boarding_logo4.jpg
     - assets/images/google_logo_icon.png
     - assets/images/person_photo.png
+    - assets/images/garage2.png
 
   fonts:
     - family: IconBroken

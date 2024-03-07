@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:racnety/core/global/resources/icons_manger.dart';
 import 'package:racnety/core/global/resources/values_manger.dart';
 import 'package:racnety/core/themes/color_manager.dart';
+import 'package:racnety/features/booking/presentation/views/screens/new_booking.dart';
 
 class MyDrawer extends StatelessWidget {
   final VoidCallback? onTap;
@@ -82,7 +83,7 @@ class MyDrawer extends StatelessWidget {
                     ),
                     ListTile(
                       leading: Icon(
-                        Icons.car_repair_outlined,
+                        Icons.directions_car,
                         color: ColorManager.black,
                       ),
                       title: Text(
@@ -94,12 +95,12 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => HelpPage(),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const NewBookingScreen(),
+                          ),
+                        );
                       },
                       splashColor: ColorManager.primary,
                     ),
