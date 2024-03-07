@@ -186,7 +186,7 @@ class UserLoginScreen extends StatelessWidget {
                           }
                         },
                       ),
-                      fallback: (context) => const LoadingWidget(),
+                      fallback: (context) => const CircularProgressIndicator(),
                     ),
                     const HorizontalOrLineWidget(
                       label: AppStrings.or,

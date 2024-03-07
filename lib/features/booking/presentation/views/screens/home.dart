@@ -30,6 +30,7 @@ class HomeScreen extends StatelessWidget {
             ImageAssets.homeBackGrd,
             fit: BoxFit.fill,
             height: double.infinity,
+            width: double.infinity,
           ),
           SingleChildScrollView(
             child: Column(

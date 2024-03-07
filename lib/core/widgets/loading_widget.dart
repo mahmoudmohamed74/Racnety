@@ -12,6 +12,7 @@ class LoadingWidget extends StatelessWidget {
         ImageAssets.homeBackGrd,
         fit: BoxFit.fill,
         height: double.infinity,
+        width: double.infinity,
       ),
       Center(
         child: CircularProgressIndicator(
