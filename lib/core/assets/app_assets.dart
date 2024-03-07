@@ -12,6 +12,8 @@ class ImageAssets {
   static const String googleLogoIcon = "$IMAGE_PATH/google_logo_icon.png";
   static const String personPhoto = "$IMAGE_PATH/person_photo.png";
   static const String garage2 = "$IMAGE_PATH/garage2.png";
+  static const String class_ = "$IMAGE_PATH/class.png";
+  static const String greenCar = "$IMAGE_PATH/green_car.png";
 }
 
 class JsonAssets {

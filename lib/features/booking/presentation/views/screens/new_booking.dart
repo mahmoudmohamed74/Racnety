@@ -8,6 +8,7 @@ import 'package:racnety/core/global/resources/icons_manger.dart';
 import 'package:racnety/core/global/resources/values_manger.dart';
 import 'package:racnety/core/themes/color_manager.dart';
 import 'package:racnety/core/widgets/app_bar_widget.dart';
+import 'package:racnety/features/booking/presentation/views/screens/booking_class_screen.dart';
 import 'package:racnety/features/booking/presentation/views/widgets/drawer.dart';
 
 class NewBookingScreen extends StatelessWidget {
@@ -69,7 +70,14 @@ class NewBookingScreen extends StatelessWidget {
                 height: AppSize.s5,
               ),
               itemBuilder: (BuildContext context, int index) => InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const BookingClassScreen(),
+                    ),
+                  );
+                },
                 child: Card(
                   elevation: AppSize.s3,
                   shape: RoundedRectangleBorder(
