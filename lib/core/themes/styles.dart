@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:racnety/core/themes/color_manager.dart';
+import 'package:parking_app/core/themes/color_manager.dart';
 
 abstract class AppStyles {
   static const titleStyle18 = TextStyle(

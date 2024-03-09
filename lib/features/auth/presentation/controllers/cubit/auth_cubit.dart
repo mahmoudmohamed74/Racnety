@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:racnety/core/requests/login_request.dart';
-import 'package:racnety/features/auth/data/models/user_model.dart';
+import 'package:parking_app/core/requests/login_request.dart';
+import 'package:parking_app/features/auth/data/models/user_model.dart';
 
 import '../../../../../core/network/connectivity_service.dart';
 import '../../../data/repos/auth_repo.dart';
@@ -32,9 +32,7 @@ class AuthCubit extends Cubit<AuthState> {
         );
 
         result.fold(
-          (failure) {
-
-          },
+          (failure) {},
           (products) async {},
         );
       } else {}

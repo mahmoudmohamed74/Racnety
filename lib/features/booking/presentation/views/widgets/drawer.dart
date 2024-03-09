@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:racnety/core/global/resources/icons_manger.dart';
-import 'package:racnety/core/global/resources/values_manger.dart';
-import 'package:racnety/core/themes/color_manager.dart';
-import 'package:racnety/features/booking/presentation/views/screens/new_booking.dart';
+import 'package:parking_app/core/global/resources/icons_manger.dart';
+import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/themes/color_manager.dart';
+import 'package:parking_app/features/booking/presentation/views/screens/new_booking.dart';
 
 class MyDrawer extends StatelessWidget {
   final VoidCallback? onTap;

@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:racnety/core/assets/app_assets.dart';
-import 'package:racnety/core/global/resources/values_manger.dart';
-import 'package:racnety/core/widgets/app_bar_widget.dart';
-import 'package:racnety/features/booking/presentation/views/widgets/drawer.dart';
+import 'package:parking_app/core/assets/app_assets.dart';
+import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

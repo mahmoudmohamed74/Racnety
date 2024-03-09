@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:racnety/core/utils/app_constants.dart';
+import 'package:parking_app/core/utils/app_constants.dart';
 
 class SnackBarWidget extends SnackBar {
   final Color? backGroundColor;

@@ -1,14 +1,14 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:racnety/core/assets/app_assets.dart';
-import 'package:racnety/core/global/resources/icons_manger.dart';
-import 'package:racnety/core/global/resources/strings_manger.dart';
-import 'package:racnety/core/global/resources/values_manger.dart';
-import 'package:racnety/core/themes/color_manager.dart';
-import 'package:racnety/core/widgets/app_bar_widget.dart';
-import 'package:racnety/core/widgets/snack_bar_widget.dart';
-import 'package:racnety/core/widgets/text_button_widget.dart';
+import 'package:parking_app/core/assets/app_assets.dart';
+import 'package:parking_app/core/global/resources/icons_manger.dart';
+import 'package:parking_app/core/global/resources/strings_manger.dart';
+import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/themes/color_manager.dart';
+import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/core/widgets/snack_bar_widget.dart';
+import 'package:parking_app/core/widgets/text_button_widget.dart';
 
 class ConfirmBookingScreen extends StatelessWidget {
   ConfirmBookingScreen({super.key});

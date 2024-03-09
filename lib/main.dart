@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:racnety/core/network/api_service.dart';
-import 'package:racnety/core/requests/forget_password_request.dart';
-import 'package:racnety/core/requests/login_request.dart';
-import 'package:racnety/core/requests/register_request.dart';
-import 'package:racnety/core/utils/service_locator.dart';
-import 'package:racnety/features/auth/data/repos/auth_repo.dart';
-import 'package:racnety/features/auth/presentation/views/screens/login_screen.dart';
-import 'package:racnety/features/booking/presentation/views/screens/home.dart';
+import 'package:parking_app/core/network/api_service.dart';
+import 'package:parking_app/core/requests/forget_password_request.dart';
+import 'package:parking_app/core/requests/login_request.dart';
+import 'package:parking_app/core/requests/register_request.dart';
+import 'package:parking_app/core/utils/service_locator.dart';
+import 'package:parking_app/features/auth/data/repos/auth_repo.dart';
+import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
+import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

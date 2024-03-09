@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:racnety/core/assets/app_assets.dart';
-import 'package:racnety/core/global/resources/values_manger.dart';
-import 'package:racnety/core/themes/color_manager.dart';
-import 'package:racnety/core/widgets/app_bar_widget.dart';
-import 'package:racnety/features/booking/presentation/views/screens/confirm_booking_screen.dart';
+import 'package:parking_app/core/assets/app_assets.dart';
+import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/themes/color_manager.dart';
+import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/features/booking/presentation/views/screens/confirm_booking_screen.dart';
 
 class BookingSlotsScreen extends StatelessWidget {
   const BookingSlotsScreen({super.key});

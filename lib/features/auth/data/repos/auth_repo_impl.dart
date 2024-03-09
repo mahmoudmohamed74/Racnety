@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:racnety/core/errors/failure.dart';
-import 'package:racnety/core/network/dio_factory.dart';
-import 'package:racnety/core/network/end_points.dart';
-import 'package:racnety/core/requests/forget_password_request.dart';
-import 'package:racnety/core/requests/login_request.dart';
-import 'package:racnety/core/requests/register_request.dart';
-import 'package:racnety/features/auth/data/models/user_model.dart';
-import 'package:racnety/features/auth/data/repos/auth_repo.dart';
+import 'package:parking_app/core/errors/failure.dart';
+import 'package:parking_app/core/network/dio_factory.dart';
+import 'package:parking_app/core/network/end_points.dart';
+import 'package:parking_app/core/requests/forget_password_request.dart';
+import 'package:parking_app/core/requests/login_request.dart';
+import 'package:parking_app/core/requests/register_request.dart';
+import 'package:parking_app/features/auth/data/models/user_model.dart';
+import 'package:parking_app/features/auth/data/repos/auth_repo.dart';
 
 class AuthRepoImpl implements BaseAuthRepo {
   final DioFactory dioFactory;

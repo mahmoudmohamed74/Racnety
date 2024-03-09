@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:racnety/core/themes/color_manager.dart';
+import 'package:parking_app/core/themes/color_manager.dart';
 
 class LoadingWidget extends StatelessWidget {
   const LoadingWidget({Key? key}) : super(key: key);

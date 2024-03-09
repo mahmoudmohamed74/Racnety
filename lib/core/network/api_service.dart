@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:racnety/core/network/api_constants.dart';
+import 'package:parking_app/core/network/api_constants.dart';
 
 import 'dio_factory.dart';
 

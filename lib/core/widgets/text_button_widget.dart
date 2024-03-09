@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:racnety/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/global/resources/values_manger.dart';
 
 class TextButtonWidget extends StatelessWidget {
   TextButtonWidget({

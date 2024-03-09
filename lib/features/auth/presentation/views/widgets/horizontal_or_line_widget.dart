@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:racnety/core/global/resources/values_manger.dart';
-import 'package:racnety/core/themes/color_manager.dart';
+import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/themes/color_manager.dart';
 
 class HorizontalOrLineWidget extends StatelessWidget {
   const HorizontalOrLineWidget({
