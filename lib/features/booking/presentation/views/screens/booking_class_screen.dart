@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:racnety/core/assets/app_assets.dart';
-import 'package:racnety/core/global/resources/icons_manger.dart';
 import 'package:racnety/core/global/resources/values_manger.dart';
 import 'package:racnety/core/themes/color_manager.dart';
 import 'package:racnety/core/widgets/app_bar_widget.dart';

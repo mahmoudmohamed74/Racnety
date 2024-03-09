@@ -70,6 +70,7 @@ class AppStrings {
   static const String doNotHaveAccount = "Does not have account ?";
   static const String haveAccount = "Already have an account ?";
   static const String or = "OR";
+  static const String confirmBooking = "Confirm Booking";
 
   // layout
 

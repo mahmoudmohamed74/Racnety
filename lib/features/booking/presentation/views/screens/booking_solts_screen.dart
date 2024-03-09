@@ -4,6 +4,7 @@ import 'package:racnety/core/assets/app_assets.dart';
 import 'package:racnety/core/global/resources/values_manger.dart';
 import 'package:racnety/core/themes/color_manager.dart';
 import 'package:racnety/core/widgets/app_bar_widget.dart';
+import 'package:racnety/features/booking/presentation/views/screens/confirm_booking_screen.dart';
 
 class BookingSlotsScreen extends StatelessWidget {
   const BookingSlotsScreen({super.key});
@@ -76,12 +77,12 @@ class BookingSlotsScreen extends StatelessWidget {
                   20,
                   (index) => InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const BookingClassScreen(),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ConfirmBookingScreen(),
+                        ),
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -107,7 +108,7 @@ class BookingSlotsScreen extends StatelessWidget {
                             //   color: ColorManager.black,
                             // ),
                             Icon(
-                              Icons.accessibility_new_outlined,
+                              Icons.accessible_outlined,
                               size: AppSize.s100,
                               color: ColorManager.black,
                             ),
