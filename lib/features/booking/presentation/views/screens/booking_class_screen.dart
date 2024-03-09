@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
@@ -35,86 +36,93 @@ class BookingClassScreen extends StatelessWidget {
                 height: double.infinity,
               ),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   AppBarWidget(
                     title: '',
                     isBack: true,
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      height: AppSize.s50,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        color: ColorManager.white,
-                        borderRadius: BorderRadius.circular(
-                          AppSize.s12,
-                        ),
-                        border: Border.all(
-                          color: ColorManager.black, // Border color
-                          width: 1.0, // Border width
-                        ),
-                      ),
-                      child: Center(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              garageModel?.name ?? '',
-                              style: const TextStyle(
-                                fontSize: AppSize.s20,
-                                fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            height: AppSize.s50,
+                            width: 300,
+                            decoration: BoxDecoration(
+                              color: ColorManager.white,
+                              borderRadius: BorderRadius.circular(
+                                AppSize.s12,
+                              ),
+                              border: Border.all(
+                                color: ColorManager.black, // Border color
+                                width: 1.0, // Border width
                               ),
                             ),
-                            const SizedBox(
-                              width: AppSize.s10,
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    garageModel?.name ?? '',
+                                    style: const TextStyle(
+                                      fontSize: AppSize.s20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: AppSize.s10,
+                                  ),
+                                  const Icon(
+                                    Icons.directions_car,
+                                    size: AppSize.s30,
+                                  ),
+                                ],
+                              ),
                             ),
-                            const Icon(
-                              Icons.directions_car,
-                              size: AppSize.s30,
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                  // const SizedBox(
-                  //   height: AppSize.s10,
-                  // ),
-                  ConditionalBuilder(
-                    condition: state.areasList.isNotEmpty,
-                    builder: (context) => Expanded(
-                      child:
-                          // GridView.builder(
-                          //   gridDelegate:
-                          //       const SliverGridDelegateWithFixedCrossAxisCount(
-                          //     crossAxisCount: 2, // Number of items per row
-                          //     crossAxisSpacing: 50, // Spacing between columns
-                          //     mainAxisSpacing: 8, // Spacing between rows
-                          //   ),
-                          //   itemCount: state.areasList.length,
-                          //   itemBuilder: (BuildContext context, int index) =>
-                          //       CustomAreaWidget(
-                          //     areaModel: state.areasList[index],
-                          //   ),
-                          // ),
+                        // const SizedBox(
+                        //   height: AppSize.s10,
+                        // ),
+                        ConditionalBuilder(
+                          condition: state.areasList.isNotEmpty,
+                          builder: (context) => Expanded(
+                            child:
+                                // GridView.builder(
+                                //   gridDelegate:
+                                //       const SliverGridDelegateWithFixedCrossAxisCount(
+                                //     crossAxisCount: 2, // Number of items per row
+                                //     crossAxisSpacing: 50, // Spacing between columns
+                                //     mainAxisSpacing: 8, // Spacing between rows
+                                //   ),
+                                //   itemCount: state.areasList.length,
+                                //   itemBuilder: (BuildContext context, int index) =>
+                                //       CustomAreaWidget(
+                                //     areaModel: state.areasList[index],
+                                //   ),
+                                // ),
 
-                          ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: state.areasList.length,
-                        separatorBuilder: (BuildContext context, int index) =>
-                            const SizedBox(
-                          height: AppSize.s5,
+                                ListView.separated(
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: state.areasList.length,
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                      const SizedBox(
+                                height: AppSize.s5,
+                              ),
+                              itemBuilder: (BuildContext context, int index) =>
+                                  CustomAreaWidget(
+                                areaModel: state.areasList[index],
+                              ),
+                            ),
+                          ),
+                          fallback: (context) =>
+                              const Text("No areas are available."),
                         ),
-                        itemBuilder: (BuildContext context, int index) =>
-                            CustomAreaWidget(
-                          areaModel: state.areasList[index],
-                        ),
-                      ),
+                      ],
                     ),
-                    fallback: (context) =>
-                        const Text("No areas are available."),
                   ),
                 ],
               ),

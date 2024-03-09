@@ -5,6 +5,7 @@ import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/strings_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
+import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/loading_widget.dart';
 import 'package:parking_app/core/widgets/snack_bar_widget.dart';
@@ -13,6 +14,7 @@ import 'package:parking_app/features/booking/data/models/garage_model.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/custom_time_widget.dart';
+import 'package:parking_app/features/payment/paypal_payment.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class ConfirmBookingScreen extends StatelessWidget {
@@ -254,6 +256,41 @@ class ConfirmBookingScreen extends StatelessWidget {
                                                     .pop('PayPal');
                                               },
                                             ),
+                                            const SizedBox(
+                                              height: AppSize.s5,
+                                            ),
+                                            TextButton(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Image.asset(
+                                                    ImageAssets.cash,
+                                                    scale: 13,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: AppSize.s20,
+                                                  ),
+                                                  const Text(
+                                                    'Cash',
+                                                    style: TextStyle(
+                                                      fontSize: AppSize.s20,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              onPressed: () {
+                                                paymentController.text = 'Cash';
+                                                context
+                                                    .read<BookingCubit>()
+                                                    .selectPaymentType(3);
+
+                                                Navigator.of(context)
+                                                    .pop('PayPal');
+                                              },
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -363,12 +400,55 @@ class ConfirmBookingScreen extends StatelessWidget {
                       text: AppStrings.confirmBooking,
                       fontWeight: FontWeight.bold,
                       onTap: () {
-                        context.read<BookingCubit>().bookTicket(
-                              notes: instructionController.text,
+                        if (paymentController.text == 'Paypal') {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PaypalPayment(
+                                amount: 20,
+                                orderId: 'orderModel.orderDocId',
+                                earnestIsPaid: false,
+                                priceIsPaid: false,
+                              ),
+                            ),
+                          );
+                        } else if (paymentController.text == 'Credit Card') {
+                        } else {
+                          context.read<BookingCubit>().bookTicket(
+                                notes: instructionController.text,
+                              );
+                          if (state.error == "200" || state.error == "201") {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: const Text(
+                                    'Your Booking made Successfull\nWe are Waiting You',
+                                    style: TextStyle(
+                                      fontSize: AppSize.s16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('ALRIGHT'),
+                                    ),
+                                  ],
+                                );
+                              },
                             );
+                            Future.delayed(const Duration(seconds: 2), () {
+                              Navigator.pushReplacementNamed(
+                                  context, Routes.homeView);
+                            });
+                          }
+                        }
                       },
                     ),
-                    fallback: (context) => const LoadingWidget(),
+                    fallback: (context) => const CircularProgressIndicator(),
                   ),
                   const SizedBox(
                     height: AppSize.s10,

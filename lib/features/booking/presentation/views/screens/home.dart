@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                   // fit: BoxFit.fitHeight,
                   height: AppSize.s250,
                   image: AssetImage(
-                    ImageAssets.darkLogo,
+                    ImageAssets.appLogo,
                   ),
                 ),
                 const SizedBox(

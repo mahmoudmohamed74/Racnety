@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: const Center(
         child: Image(
           image: AssetImage(
-            ImageAssets.appLogo,
+            ImageAssets.darkLogo,
           ),
         ),
       ),

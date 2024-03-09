@@ -26,6 +26,7 @@ class ImageAssets {
   static const String available = "$IMAGE_PATH/available.png";
   static const String reserved = "$IMAGE_PATH/reserved.png";
   static const String darkLogo = "$IMAGE_PATH/dark_logo.png";
+  static const String cash = "$IMAGE_PATH/cash.png";
 }
 
 class JsonAssets {

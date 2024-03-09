@@ -81,7 +81,7 @@ class UserLoginScreen extends StatelessWidget {
                       fit: BoxFit.fitHeight,
                       height: AppSize.s150,
                       image: AssetImage(
-                        ImageAssets.appLogo,
+                        ImageAssets.darkLogo,
                       ),
                     ),
                     const SizedBox(
