@@ -58,7 +58,8 @@ dependencies:
   sqflite: ^2.0.0
   path_provider: ^2.0.0
   toggle_switch: ^2.3.0
-  # flutter_stripe: ^9.2.0
+  flutter_stripe: ^10.1.1
+  http: ^0.13.6
   qr_flutter: ^4.1.0  
   
 dev_dependencies:

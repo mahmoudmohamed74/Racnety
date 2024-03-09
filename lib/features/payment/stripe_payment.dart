@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
 import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 
@@ -24,14 +25,14 @@ Future<void> initPayment({
     final jsonResponse = jsonDecode(response.body);
     log(jsonResponse.toString());
     // 2. Initialize the payment sheet
-    // await Stripe.instance.initPaymentSheet(
-    //     paymentSheetParameters: SetupPaymentSheetParameters(
-    //   paymentIntentClientSecret: jsonResponse['paymentIntent'],
-    //   merchantDisplayName: 'booking payment',
-    //   customerId: jsonResponse['customer'],
-    //   customerEphemeralKeySecret: jsonResponse['ephemeralKey'],
-    // ));
-    // await Stripe.instance.presentPaymentSheet();
+    await Stripe.instance.initPaymentSheet(
+        paymentSheetParameters: SetupPaymentSheetParameters(
+      paymentIntentClientSecret: jsonResponse['paymentIntent'],
+      merchantDisplayName: 'booking payment',
+      customerId: jsonResponse['customer'],
+      customerEphemeralKeySecret: jsonResponse['ephemeralKey'],
+    ));
+    await Stripe.instance.presentPaymentSheet();
     // FirebaseFirestore.instance.collection("order").doc(orderId).update({
     //   if (earnestIsPaid == true) "earnestIsPaid": "true",
     //   if (priceIsPaid == true) "priceIsPaid": "true",
@@ -45,24 +46,19 @@ Future<void> initPayment({
       ),
     );
   } catch (error) {
-    // if (error is StripeException) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBarWidget(
-    //       text: Text('An error occurred ${error.error.localizedMessage}'),
-    //       backGroundColor: Colors.red,
-    //     ),
-    //   );
-    // } else {
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //     content: Text('An error occurred $error'),
-    //   ),
-    // );
-    // }
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //     content: Text('An error occurred $error'),
-    //   ),
-    // );
+    if (error is StripeException) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBarWidget(
+          text: Text('An error occurred ${error.error.localizedMessage}'),
+          backGroundColor: Colors.red,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('An error occurred $error'),
+        ),
+      );
+    }
   }
 }

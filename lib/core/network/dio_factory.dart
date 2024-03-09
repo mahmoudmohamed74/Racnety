@@ -66,11 +66,8 @@ class DioFactory {
       ),
     );
 
-    final String basicAuth =
-        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
-
     dio.options.headers = {
-      'Authorization': basicAuth,
+      'Authorization': 'Bearer $token',
     };
 
     return await dio.get(
@@ -109,11 +106,8 @@ class DioFactory {
       ),
     );
 
-    final String basicAuth =
-        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
-
     dio.options.headers = {
-      'Authorization': basicAuth,
+      'Authorization': 'Bearer $token',
     };
 
     return await dio.post(

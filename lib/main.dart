@@ -7,9 +7,13 @@ import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/features/auth/presentation/controllers/cubit/auth_cubit.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/firebase_options.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:parking_app/.env';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = stripePublishableKey;
+  await Stripe.instance.applySettings();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

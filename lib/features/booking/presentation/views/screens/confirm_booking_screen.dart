@@ -15,6 +15,7 @@ import 'package:parking_app/features/booking/presentation/controllers/booking_cu
 import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/custom_time_widget.dart';
 import 'package:parking_app/features/payment/paypal_payment.dart';
+import 'package:parking_app/features/payment/stripe_payment.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class ConfirmBookingScreen extends StatelessWidget {
@@ -399,7 +400,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                       height: AppSize.s52,
                       text: AppStrings.confirmBooking,
                       fontWeight: FontWeight.bold,
-                      onTap: () {
+                      onTap: () async {
                         if (paymentController.text == 'Paypal') {
                           Navigator.push(
                             context,
@@ -413,6 +414,10 @@ class ConfirmBookingScreen extends StatelessWidget {
                             ),
                           );
                         } else if (paymentController.text == 'Credit Card') {
+                          await initPayment(
+                              amount: 50.0,
+                              context: context,
+                              email: 'email@test.com');
                         } else {
                           context.read<BookingCubit>().bookTicket(
                                 notes: instructionController.text,
