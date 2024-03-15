@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
+import 'package:parking_app/features/garages/data/repo/base_garage_repo.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -17,7 +19,9 @@ class HomeScreen extends StatelessWidget {
         isBack: false,
         isTextButton: true,
         textButton: 'LOGOUT',
-        onTap: () {},
+        onTap: () {
+          sl.get<BaseGarageRepo>().getGarages();
+        },
       ),
       drawer: Align(
         alignment: Alignment.topLeft,
@@ -41,10 +45,11 @@ class HomeScreen extends StatelessWidget {
             height: AppSize.s50,
           ),
           Center(
-              child: Text(
-            "Parking app for malls is to provide a parking solution \nthat includes features to enhance the parking \nexperience ,parking experience for Shopping Malls.",
-            textAlign: TextAlign.center,
-          )),
+            child: Text(
+              "Parking app for malls is to provide a parking solution \nthat includes features to enhance the parking \nexperience ,parking experience for Shopping Malls.",
+              textAlign: TextAlign.center,
+            ),
+          ),
         ],
       ),
     );
