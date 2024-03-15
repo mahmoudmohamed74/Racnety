@@ -42,8 +42,8 @@ class MyDrawer extends StatelessWidget {
                     height: AppSize.s40,
                   ),
                   Image.asset(
-                    ImageAssets.appLogo,
-                    scale: 18,
+                    ImageAssets.darkLogo,
+                    scale: 8,
                   ),
                   Text(
                     "Raknety",
