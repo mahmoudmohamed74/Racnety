@@ -34,4 +34,50 @@ class GarageRepoImpl implements BaseGarageRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<GarageModel>>> getGaragesInfo() async {
+    try {
+      final response = await dioFactory.getReq(
+        endPoint: EndPoints.getGaragesInfoEndPoint,
+      );
+      final List<dynamic> garagesInfoData = response.data;
+
+      final List<GarageModel> garagesInfoList =
+          garagesInfoData.map((json) => GarageModel.fromJson(json)).toList();
+      if (kDebugMode) {
+        print("garagesInfo ${garagesInfoList.first.toString()}");
+      }
+      return right(garagesInfoList);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<GarageModel>>> getSlotsByGarage({
+    required int garageId,
+  }) async {
+    try {
+      final response = await dioFactory.getReq(
+        endPoint: '${EndPoints.getSlotsByGarageEndPoint}$garageId',
+      );
+      final List<dynamic> slotsByGaragesData = response.data;
+
+      final List<GarageModel> slotsByGaragesList =
+          slotsByGaragesData.map((json) => GarageModel.fromJson(json)).toList();
+      if (kDebugMode) {
+        print("slotsByGarages ${slotsByGaragesList.first.toString()}");
+      }
+      return right(slotsByGaragesList);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

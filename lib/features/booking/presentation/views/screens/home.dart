@@ -21,6 +21,8 @@ class HomeScreen extends StatelessWidget {
         textButton: 'LOGOUT',
         onTap: () {
           sl.get<BaseGarageRepo>().getGarages();
+          sl.get<BaseGarageRepo>().getGaragesInfo();
+          sl.get<BaseGarageRepo>().getSlotsByGarage(garageId: 1);
         },
       ),
       drawer: Align(
