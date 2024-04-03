@@ -50,6 +50,7 @@ dependencies:
   pretty_dio_logger:
   conditional_builder_null_safety: ^0.0.6
   time_picker_widget: ^1.0.0+10
+  firebase_core: ^2.28.0
   
 dev_dependencies:
   flutter_test:
