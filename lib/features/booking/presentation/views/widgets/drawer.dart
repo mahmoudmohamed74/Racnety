@@ -80,7 +80,7 @@ class MyDrawer extends StatelessWidget {
                         Navigator.of(context).pop(); // Close the dialog
                         Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
+                            builder: (context) => HomeScreen(),
                           ),
                           (Route<dynamic> route) => false,
                         );

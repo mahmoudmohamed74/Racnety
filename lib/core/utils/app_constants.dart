@@ -6,6 +6,7 @@ class Constants {
   // static const String baseUrl = "http://minafarid246.mocklab.io";
   // static const String empty = "";
   // static const String token = "SEND TOKEN HERE";
+  static String? userName;
   static const String empty = "";
   static const int APPID = 456506763;
   static const String APPSign =

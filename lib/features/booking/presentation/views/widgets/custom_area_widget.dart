@@ -56,8 +56,8 @@ class CustomAreaWidget extends StatelessWidget {
                   width: AppSize.s20,
                 ),
                 Image.asset(
-                  ImageAssets.slotImg,
-                  scale: 4,
+                  ImageAssets.spaces,
+                  scale: 7,
                 ),
               ],
             ),

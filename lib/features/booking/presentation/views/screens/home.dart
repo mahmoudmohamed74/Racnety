@@ -1,21 +1,48 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/strings_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
+import 'package:parking_app/core/utils/app_constants.dart';
+import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/app_router.dart';
+import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
 import 'package:parking_app/features/auth/presentation/controllers/cubit/auth_cubit.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  String? name;
+  HomeScreen({this.name, super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final AppPreferences _appPreferences = sl<AppPreferences>();
+
+  @override
+  void initState() {
+    // context.read<AuthCubit>().getName();
+    // Future<String?> getName() async {
+    //   widget.name = await _appPreferences.getUserName();
+    //   // Constants.userName = await _appPreferences.getUserName();
+    //   print("regredgedrgedr-------gedr-0--------${widget.name}");
+    //   return widget.name;
+    // }
+    // widget.name =  _appPreferences.getUserName();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +63,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 AppBarWidget(
-                  title:
-                      'welcome , ${context.read<AuthCubit>().userModel?.userName}',
+                  title: 'welcome , ${_appPreferences.getUserName()}',
                   isBack: false,
                 ),
                 const SizedBox(

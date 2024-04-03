@@ -38,7 +38,7 @@ class RouteGenerator {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.homeView:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return MaterialPageRoute(builder: (_) => HomeScreen());
       case Routes.loginView:
         return MaterialPageRoute(builder: (_) => UserLoginScreen());
       case Routes.newBooking:

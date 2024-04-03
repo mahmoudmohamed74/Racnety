@@ -49,7 +49,7 @@ class AuthCubit extends Cubit<AuthState> {
           error: "1",
         ),
       ),
-      (r) {
+      (r) async {
         userModel = r;
         emit(
           state.copyWith(
@@ -107,7 +107,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logout(context) async {
-    await sl<AppPreferences>().logoutUser();
+    await sl<AppPreferences>().clean();
     emit(const AuthState.empty());
     Navigator.pushReplacement(
       context,

@@ -255,7 +255,7 @@ class ConfirmServiceScreen extends StatelessWidget {
                                 Navigator.of(context).pop();
                                 Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
-                                    builder: (context) => const HomeScreen(),
+                                    builder: (context) => HomeScreen(),
                                   ),
                                   (Route<dynamic> route) => false,
                                 );

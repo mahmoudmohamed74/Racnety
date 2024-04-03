@@ -102,6 +102,7 @@ flutter:
     - assets/images/reserved.png
     - assets/images/dark_logo.png
     - assets/images/cash.png
+    - assets/images/spaces.png
   fonts:
     - family: IconBroken
       fonts:

@@ -54,7 +54,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                     Navigator.of(context).pop();
                     Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => HomeScreen(),
                       ),
                       (Route<dynamic> route) => false,
                     );
@@ -416,7 +416,8 @@ class ConfirmBookingScreen extends StatelessWidget {
                                 priceIsPaid: false,
                               ),
                             ),
-                          );
+                          ).whenComplete(
+                              () => context.read<BookingCubit>().bookTicket());
                         } else if (paymentController.text == 'Credit Card') {
                           await initPayment(
                               amount: 50.0,

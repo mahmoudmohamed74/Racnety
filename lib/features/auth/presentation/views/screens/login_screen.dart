@@ -42,8 +42,10 @@ class UserLoginScreen extends StatelessWidget {
                 await _appPreferences.setIsUserLoggedIn();
                 await _appPreferences
                     .saveUserId(state.userModel!.userId!.toString());
+                _appPreferences.saveUserName(state.userModel!.userName!);
                 await _appPreferences
                     .saveUserToken(state.userModel!.tokenType!);
+
                 Navigator.pushReplacementNamed(
                   context,
                   Routes.homeView,
