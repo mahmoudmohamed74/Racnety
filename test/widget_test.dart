@@ -5,10 +5,16 @@
 // // gestures. You can also use WidgetTester to find child widgets in the widget
 // // tree, read text, and verify that the values of widget properties are correct.
 
+// <<<<<<< HEAD
 // import 'package:flutter/material.dart';
 // import 'package:flutter_test/flutter_test.dart';
 
 // import 'package:racnety/main.dart';
+// =======
+// import 'package:flutter/material.dart';
+// import 'package:flutter_test/flutter_test.dart';
+// import 'package:parking_app/main.dart';
+// >>>>>>> 97519b923e489fb76f251d427900aeaf7ad6c9e4
 
 // void main() {
 //   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

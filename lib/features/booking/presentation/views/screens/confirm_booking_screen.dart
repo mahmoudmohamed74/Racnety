@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/icons_manger.dart';
@@ -13,11 +11,11 @@ import 'package:parking_app/core/widgets/text_button_widget.dart';
 class ConfirmBookingScreen extends StatelessWidget {
   ConfirmBookingScreen({super.key});
 
-  TextEditingController startTimeController = TextEditingController();
-  TextEditingController durationTimeController = TextEditingController();
-  TextEditingController paymentController = TextEditingController();
+  final TextEditingController startTimeController = TextEditingController();
+  final TextEditingController durationTimeController = TextEditingController();
+  final TextEditingController paymentController = TextEditingController();
 
-  TextEditingController instructionController = TextEditingController();
+  final TextEditingController instructionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

@@ -89,14 +89,14 @@ class BookingClassScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'A1',
                             style: TextStyle(
                               fontSize: AppSize.s30,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: AppSize.s10,
                           ),
                           Image.asset(
@@ -104,7 +104,7 @@ class BookingClassScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: AppSize.s30,
                       ),
                     ],

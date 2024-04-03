@@ -33,31 +33,8 @@ class DioFactory {
     AUTHORIZATION: ApiConstants.token,
     // DEFAULT_LANG: language,
   };
-  Future<Dio> getDio() async {
-    Dio dio = Dio();
-    // String language = await _appPreferences
-    //     .getAppLanguage(); // get the saved lang that user saved in sheared pref
 
-    dio.options = BaseOptions(
-        baseUrl: ApiConstants.baseUrl,
-        headers: headers,
-        receiveTimeout: const Duration(milliseconds: ApiConstants.appTimeOut),
-        sendTimeout: const Duration(milliseconds: ApiConstants.appTimeOut));
-
-    if (!kReleaseMode) {
-      dio.interceptors.add(
-        PrettyDioLogger(
-          requestHeader: true,
-          responseHeader: true,
-          requestBody: true,
-        ),
-      );
-    }
-    return dio;
-  }
-
-// CS5
-  Future<Response> loginPost({
+  Future<Response> getReq({
     required String endPoint,
     data,
     String? token,
@@ -67,26 +44,15 @@ class DioFactory {
         baseUrl: ApiConstants.baseUrl,
         receiveDataWhenStatusError: true,
         followRedirects: false,
-        headers: headers,
-        //  {
-        //   'Accept-Encoding': 'gzip, deflate, br',
-        //   'Connection': 'keep-alive',
-        //   'Accept': '*/*',
-        //   'content-type': 'application/x-www-form-urlencoded',
-        // },
       ),
     );
-    if (token != null) {
-      dio.options.headers = {
-        'Authorization': 'Bearer $token',
-      };
-    }
+
     dio.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
-        responseBody: false,
-        responseHeader: false,
+        responseBody: true,
+        responseHeader: true,
         error: true,
         compact: true,
         maxWidth: 90,
@@ -96,8 +62,12 @@ class DioFactory {
       ),
     );
 
-    return await dio.post(
-      ApiConstants.token,
+    dio.options.headers = {
+      'Authorization': 'Bearer $token',
+    };
+
+    return await dio.get(
+      endPoint,
       data: data,
     );
   }
@@ -115,8 +85,6 @@ class DioFactory {
         followRedirects: false,
       ),
     );
-    // token =
-    //     "vnJD83W7a7kfjushieVzByLTkaED8uBY6GU_eQLVUobneNCjxvgZE_HeRYWIeVb7kG21Ya9LI7AUb3BMkH2Xzqp7qBbIN-aKyo0ohHEcsvuPcRB4bqtuNjKEXasH_oo8NJORK_tIgKSIgJUKlCTF31F8-RtgXqUQ9n4yxCqSz0ZdW5C8-gsLzfi3IELOM0Qp593_hcbKB8BHpr7mV7jo9TcWNyp9-P58URBOD9iBWjnwx7W2w1eYKZ4_rl9oFhfkuFqGjLC5yinEuOj0B7G7TLs5ZZ7JdEkSkR2ngtjtRW-qC_ZCadU2zAJH4rj1UYbw0Q2hRiLTtuDHiSetdpeoO_u1qc3pH8--e8w9yAUE5emdrH4R3NSavk_oc3qpzmRo67ShMzTEiiCpfZppn0_SAvM5KVmpzrmZ4jpRbb2gHxp2wWQR9zmnA0NzpqGBqUIXGzURhcC5VgRpZ9smPsc_p06TnCmWaJrvrDSJDY1LpIFSJ4CBtv4Xyx_dhxnabWZCxfkk9DE9tXHNNzbgx8eCL0iZa1MtZ4Y0VCS1fpaN0go";
 
     dio.interceptors.add(
       PrettyDioLogger(
@@ -133,11 +101,6 @@ class DioFactory {
       ),
     );
 
-    // if (token != null) {
-    //   dio.options.headers = {
-    //     'Authorization': 'Bearer ${ApiConstants.token}',
-    //   };
-    // }
     dio.options.headers = {
       'Authorization': 'Bearer $token',
     };
