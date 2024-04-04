@@ -7,6 +7,7 @@ import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 import 'package:parking_app/features/garages/data/repo/base_garage_repo.dart';
+import 'package:parking_app/features/payment/paypal_payment.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -47,11 +48,27 @@ class HomeScreen extends StatelessWidget {
             height: AppSize.s50,
           ),
           Center(
-            child: Text(
-              "Parking app for malls is to provide a parking solution \nthat includes features to enhance the parking \nexperience ,parking experience for Shopping Malls.",
-              textAlign: TextAlign.center,
-            ),
-          ),
+              child: TextButton(
+            child: Text('paypal'),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PaypalPayment(
+                    amount: 20,
+                    orderId: 'orderModel.orderDocId',
+                    earnestIsPaid: false,
+                    priceIsPaid: false,
+                  ),
+                ),
+              );
+            },
+          )
+              // Text(
+              //   "Parking app for malls is to provide a parking solution \nthat includes features to enhance the parking \nexperience ,parking experience for Shopping Malls.",
+              //   textAlign: TextAlign.center,
+              // ),
+              ),
         ],
       ),
     );

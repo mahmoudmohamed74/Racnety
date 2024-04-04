@@ -51,6 +51,9 @@ dependencies:
   conditional_builder_null_safety: ^0.0.6
   time_picker_widget: ^1.0.0+10
   firebase_core: ^2.28.0
+  flutter_paypal: ^0.2.0
+  webview_flutter_x5: ^2.0.8+9
+  cloud_firestore: ^4.16.0
   
 dev_dependencies:
   flutter_test:
