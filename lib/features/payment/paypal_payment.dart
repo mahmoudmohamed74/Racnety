@@ -28,10 +28,12 @@ class PaypalPayment extends StatefulWidget {
 
 class _PaypalPaymentState extends State<PaypalPayment> {
   late final Map<String, dynamic> _transaction;
+  bool _isMounted = false;
 
   @override
   void initState() {
     super.initState();
+    _isMounted = true;
     // Enable hybrid composition.
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
 
@@ -70,6 +72,12 @@ class _PaypalPaymentState extends State<PaypalPayment> {
     };
   }
 
+  @override
+  void dispose() {
+    _isMounted = false; // Set _isMounted to false when the state is disposed
+    super.dispose();
+  }
+
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
   @override
@@ -80,23 +88,23 @@ class _PaypalPaymentState extends State<PaypalPayment> {
           "ARRcntqib0lMxkKF0zKl1LI666MhQX0Y7_2GUB1Z8_UNlqjWNqbk3_zlPH9gdyW-n-rRxBDPrskfdcod",
       secretKey:
           "EEv88FnSqvctMyYq7lwjoP5uYqtslAvJJQsKoueEa01RUek6T24-VXWLRhwkYsRgwtolDlvFcQyQNYHX",
-      returnURL: "https://solvers-a41b9.firebaseapp.com/return",
-      cancelURL: "https://solvers-a41b9.firebaseapp.com/cancel",
+      returnURL: "https://parking-app-aeec4.firebaseapp.com/return",
+      cancelURL: "https://parking-app-aeec4.firebaseapp.com/cancel",
       transactions: [_transaction],
       note: "Contact us for any questions on your order.",
       onSuccess: (
         Map params,
       ) async {
-        if (mounted) {
-          setState(() {
-            _scaffoldKey.currentState?.showSnackBar(
-              SnackBarWidget(
-                text: const Text('Payment is successful'),
-                backGroundColor: Colors.green,
-              ),
-            );
-          });
-        }
+        // if (_isMounted) {
+        //   setState(() {
+        //     _scaffoldKey.currentState?.showSnackBar(
+        //       SnackBarWidget(
+        //         text: const Text('Payment is successful'),
+        //         backGroundColor: Colors.green,
+        //       ),
+        //     );
+        //   });
+        // }
         FirebaseFirestore.instance
             .collection("order")
             .doc(widget.orderId)
@@ -108,21 +116,31 @@ class _PaypalPaymentState extends State<PaypalPayment> {
         print("Payment successful! Payment ID: $params");
       },
       onError: (error) {
-        _scaffoldKey.currentState?.showSnackBar(
-          SnackBarWidget(
-            text: Text('An error occurred ${error.toString()}'),
-            backGroundColor: Colors.yellow,
-          ),
-        );
+        // if (_isMounted) {
+        //   // Check _isMounted before calling setState
+        //   setState(() {
+        //     _scaffoldKey.currentState?.showSnackBar(
+        //       SnackBarWidget(
+        //         text: Text('An error occurred ${error.toString()}'),
+        //         backGroundColor: Colors.yellow,
+        //       ),
+        //     );
+        //   });
+        // }
         print("Payment error: $error");
       },
       onCancel: (params) {
-        _scaffoldKey.currentState?.showSnackBar(
-          SnackBarWidget(
-            text: const Text('Payment is cancelled'),
-            backGroundColor: Colors.yellow,
-          ),
-        );
+        // if (_isMounted) {
+        //   // Check _isMounted before calling setState
+        //   setState(() {
+        //     _scaffoldKey.currentState?.showSnackBar(
+        //       SnackBarWidget(
+        //         text: const Text('Payment is cancelled'),
+        //         backGroundColor: Colors.yellow,
+        //       ),
+        //     );
+        //   });
+        // }
         print("Payment cancelled by user: $params");
       },
     );

@@ -54,6 +54,7 @@ dependencies:
   flutter_paypal: ^0.2.0
   webview_flutter_x5: ^2.0.8+9
   cloud_firestore: ^4.16.0
+  flutter_stripe: ^9.2.0
   
 dev_dependencies:
   flutter_test:

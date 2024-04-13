@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:parking_app/core/network/api_service.dart';
 import 'package:parking_app/core/requests/forget_password_request.dart';
 import 'package:parking_app/core/requests/login_request.dart';
@@ -10,9 +11,13 @@ import 'package:parking_app/features/auth/data/repos/auth_repo.dart';
 import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 import 'package:parking_app/firebase_options.dart';
+import '.env';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = stripePublishableKey;
+  await Stripe.instance.applySettings();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -26,7 +31,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
       // theme: ThemeData(
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
