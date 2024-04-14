@@ -1,6 +1,5 @@
 // // ignore_for_file: avoid_print
 
-
 // class BottomDialog {
 //   final AppPreferences _appPreferences = sl<AppPreferences>();
 

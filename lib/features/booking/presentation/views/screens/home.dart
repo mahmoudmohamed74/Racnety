@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/requests/book_ticket_request.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/features/booking/data/repos/base_booking_repo.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 import 'package:parking_app/features/garages/data/repo/base_garage_repo.dart';
 import 'package:parking_app/features/payment/paypal_payment.dart';
@@ -22,8 +24,25 @@ class HomeScreen extends StatelessWidget {
         textButton: 'LOGOUT',
         onTap: () {
           sl.get<BaseGarageRepo>().getGarages();
-          sl.get<BaseGarageRepo>().getGaragesInfo();
-          sl.get<BaseGarageRepo>().getSlotsByGarage(garageId: 1);
+          // sl.get<BaseBookingRepo>().getAreaBySlot(areaId: 1);
+          // sl.get<BaseBookingRepo>().getAreaBySlotDis(areaId: 1);
+          // sl.get<BaseBookingRepo>().getBookingHist(accountId: 1);
+          // sl.get<BaseBookingRepo>().getTicketQRCode(ticketId: 8, accountId: 1);
+          // sl.get<BaseBookingRepo>().bookTicket(
+          //       bookRequest: BookRequest(
+          //         garageId: 1,
+          //         slotId: 1,
+          //         areaId: 16,
+          //         bookTime: "06:00",
+          //         bookDuration: "30",
+          //         note: "mobile test",
+          //         accountId: 1,
+          //         paymentTypeId: 1,
+          //         bookingDate: DateTime.now(),
+          //       ),
+          //     );
+          // sl.get<BaseGarageRepo>().getGaragesInfo();
+          // sl.get<BaseGarageRepo>().getSlotsByGarage(garageId: 1);
         },
       ),
       drawer: Align(

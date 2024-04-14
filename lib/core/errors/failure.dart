@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class Failure extends Equatable {
   final String errorMessage;
@@ -25,7 +26,9 @@ class ServerFailure extends Failure {
 
       case DioExceptionType.badResponse:
         {
-          print(dioError.response!.data);
+          if (kDebugMode) {
+            print(dioError.response!.data);
+          }
           return ServerFailure.fromResponse(
             dioError.response!.statusCode,
             dioError.response!.data,

@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names, avoid_print
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:parking_app/core/network/api_constants.dart';
@@ -20,6 +22,8 @@ const String connection = 'Connection';
 const String keepAlive = 'keep-alive';
 const String acceptEncoding = 'Accept-Encoding';
 const String acceptEncodingType = 'gzip, deflate, br';
+const String username = '11170654';
+const String password = '60-dayfreetrial';
 
 class DioFactory {
   // final AppPreferences _appPreferences;
@@ -62,8 +66,11 @@ class DioFactory {
       ),
     );
 
+    final String basicAuth =
+        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
+
     dio.options.headers = {
-      'Authorization': 'Bearer $token',
+      'Authorization': basicAuth,
     };
 
     return await dio.get(
@@ -101,8 +108,11 @@ class DioFactory {
       ),
     );
 
+    final String basicAuth =
+        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
+
     dio.options.headers = {
-      'Authorization': 'Bearer $token',
+      'Authorization': basicAuth,
     };
 
     return await dio.post(
@@ -140,16 +150,55 @@ class DioFactory {
       ),
     );
 
-    // if (token != null) {
-    //   dio.options.headers = {
-    //     'Authorization': 'Bearer ${ApiConstants.token}',
-    //   };
-    // }
+    final String basicAuth =
+        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
+
     dio.options.headers = {
-      'Authorization': 'Bearer $token',
+      'Authorization': basicAuth,
     };
 
     return await dio.put(
+      endPoint,
+      data: data,
+    );
+  }
+
+  Future<Response> deleteReq({
+    required String endPoint,
+    data,
+    String? token,
+    String? contentType,
+  }) async {
+    final Dio dio = Dio(
+      BaseOptions(
+        baseUrl: ApiConstants.baseUrl,
+        receiveDataWhenStatusError: true,
+        followRedirects: false,
+      ),
+    );
+
+    dio.interceptors.add(
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: true,
+        responseHeader: true,
+        error: true,
+        compact: true,
+        maxWidth: 90,
+        logPrint: (object) {
+          debugPrint(object.toString());
+        },
+      ),
+    );
+    final String basicAuth =
+        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
+
+    dio.options.headers = {
+      'Authorization': basicAuth,
+    };
+
+    return await dio.delete(
       endPoint,
       data: data,
     );
