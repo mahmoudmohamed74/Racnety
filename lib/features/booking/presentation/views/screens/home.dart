@@ -23,11 +23,18 @@ class HomeScreen extends StatelessWidget {
         isTextButton: true,
         textButton: 'LOGOUT',
         onTap: () {
-          sl.get<BaseGarageRepo>().getGarages();
+          // sl.get<BaseGarageRepo>().getGarages();
           // sl.get<BaseBookingRepo>().getAreaBySlot(areaId: 1);
           // sl.get<BaseBookingRepo>().getAreaBySlotDis(areaId: 1);
+          // sl.get<BaseBookingRepo>().getTicketQRCode(ticketId: 9, accountId: 1);
+          sl
+              .get<BaseBookingRepo>()
+              .deleteTicket(accountId: 1, ticketId: 13)
+              .then((value) {
+            return sl.get<BaseBookingRepo>().getBookingHist(accountId: 1);
+          });
           // sl.get<BaseBookingRepo>().getBookingHist(accountId: 1);
-          // sl.get<BaseBookingRepo>().getTicketQRCode(ticketId: 8, accountId: 1);
+
           // sl.get<BaseBookingRepo>().bookTicket(
           //       bookRequest: BookRequest(
           //         garageId: 1,
@@ -41,6 +48,7 @@ class HomeScreen extends StatelessWidget {
           //         bookingDate: DateTime.now(),
           //       ),
           //     );
+
           // sl.get<BaseGarageRepo>().getGaragesInfo();
           // sl.get<BaseGarageRepo>().getSlotsByGarage(garageId: 1);
         },

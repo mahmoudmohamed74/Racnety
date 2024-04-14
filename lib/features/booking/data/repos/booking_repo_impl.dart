@@ -140,7 +140,7 @@ class BookingRepoImpl implements BaseBookingRepo {
   }) async {
     try {
       await dioFactory.deleteReq(
-        endPoint: EndPoints.deleteBookEndPoint,
+        endPoint: "${EndPoints.deleteBookEndPoint}/$ticketId/$accountId",
       );
 
       return right(null);

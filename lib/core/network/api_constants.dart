@@ -1,6 +1,6 @@
 class ApiConstants {
   // static const String baseUrl = 'http://176.9.184.190/'; //sc5
-  static const String baseUrl = 'http://parker2025-001-site1.ktempurl.com/';
+  static const String baseUrl = 'http://parkingsystem2-001-site1.ktempurl.com/';
 
   static const String empty = "";
   static const String token =
