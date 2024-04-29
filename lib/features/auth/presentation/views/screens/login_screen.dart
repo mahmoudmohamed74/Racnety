@@ -50,7 +50,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                   fit: BoxFit.fitHeight,
                   height: AppSize.s150,
                   image: AssetImage(
-                    ImageAssets.splashLogo,
+                    ImageAssets.appLogo,
                   ),
                 ),
                 const SizedBox(

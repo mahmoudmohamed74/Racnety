@@ -42,7 +42,7 @@ class UserRegisterScreen extends StatelessWidget {
                   fit: BoxFit.fitHeight,
                   height: AppSize.s150,
                   image: AssetImage(
-                    ImageAssets.splashLogo,
+                    ImageAssets.appLogo,
                   ),
                 ),
                 const SizedBox(

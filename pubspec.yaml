@@ -54,6 +54,7 @@ dependencies:
   flutter_paypal: ^0.2.0
   webview_flutter_x5: ^2.0.8+9
   cloud_firestore: ^4.16.0
+  shared_preferences: ^2.2.3
   # flutter_stripe: ^9.2.0
   
 dev_dependencies:
@@ -73,11 +74,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/splash_logo.png
-    - assets/images/on_boarding_logo1.jpg
-    - assets/images/on_boarding_logo2.jpg
-    - assets/images/on_boarding_logo3.jpg
-    - assets/images/on_boarding_logo4.jpg
+    - assets/images/app_logo.jpg
     - assets/images/google_logo_icon.png
     - assets/images/person_photo.png
     - assets/images/garage2.png
