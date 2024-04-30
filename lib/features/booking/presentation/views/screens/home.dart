@@ -10,6 +10,7 @@ import 'package:parking_app/features/booking/data/repos/base_booking_repo.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 import 'package:parking_app/features/garages/data/repo/base_garage_repo.dart';
 import 'package:parking_app/features/payment/paypal_payment.dart';
+import 'package:parking_app/features/payment/stripe_payment.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -64,7 +65,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(
             height: AppSize.s50,
           ),
-           Image(
+          Image(
             fit: BoxFit.fitHeight,
             height: AppSize.s150,
             image: AssetImage(
@@ -76,19 +77,22 @@ class HomeScreen extends StatelessWidget {
           ),
           Center(
               child: TextButton(
-            child: Text('paypal'),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PaypalPayment(
-                    amount: 20,
-                    orderId: 'orderModel.orderDocId',
-                    earnestIsPaid: false,
-                    priceIsPaid: false,
-                  ),
-                ),
+            child: Text('payment'),
+            onPressed: () async {
+              await initPayment(
+                  amount: 50.0, context: context, email: 'email@test.com'
               );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => PaypalPayment(
+              //       amount: 20,
+              //       orderId: 'orderModel.orderDocId',
+              //       earnestIsPaid: false,
+              //       priceIsPaid: false,
+              //     ),
+              //   ),
+              // );
             },
           )
               // Text(

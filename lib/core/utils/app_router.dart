@@ -15,7 +15,7 @@ abstract class AppRouter {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const SplashScreen();
+          return const HomeScreen();
         },
       ),
       GoRoute(

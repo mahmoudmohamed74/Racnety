@@ -7,6 +7,8 @@ import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
+import 'package:parking_app/features/payment/paypal_payment.dart';
+import 'package:parking_app/features/payment/stripe_payment.dart';
 
 class ConfirmBookingScreen extends StatelessWidget {
   ConfirmBookingScreen({super.key});
@@ -454,7 +456,7 @@ class ConfirmBookingScreen extends StatelessWidget {
               height: AppSize.s52,
               text: AppStrings.confirmBooking,
               fontWeight: FontWeight.bold,
-              onTap: () {
+              onTap: () async {
                 if (startTimeController.text == '') {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBarWidget(
@@ -495,7 +497,21 @@ class ConfirmBookingScreen extends StatelessWidget {
                     ),
                   );
                 } else if (paymentController.text == 'Paypal') {
-                } else if (paymentController.text == 'Credit Card') {}
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaypalPayment(
+                        amount: 20,
+                        orderId: 'orderModel.orderDocId',
+                        earnestIsPaid: false,
+                        priceIsPaid: false,
+                      ),
+                    ),
+                  );
+                } else if (paymentController.text == 'Credit Card') {
+                  await initPayment(
+                      amount: 50.0, context: context, email: 'email@test.com');
+                }
               },
             ),
             const SizedBox(
