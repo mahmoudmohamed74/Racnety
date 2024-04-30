@@ -8,7 +8,6 @@ import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/firebase_options.dart';
 import 'package:parking_app/.env';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = stripePublishableKey;
@@ -27,9 +26,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter.router,
+      onGenerateRoute: RouteGenerator.getRoute,
+      initialRoute: Routes.splashRoute,
     );
   }
 }

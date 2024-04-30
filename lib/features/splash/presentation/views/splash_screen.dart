@@ -23,15 +23,16 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goNext() async {
-    _appPreferences.isUserLoggedIn().then(
-      (isUserLoggedIn) {
-        if (isUserLoggedIn) {
-          Navigator.pushReplacementNamed(context, AppRouter.kHomeView);
-        } else {
-          Navigator.pushReplacementNamed(context, AppRouter.kLoginView);
-        }
-      },
-    );
+    Navigator.pushReplacementNamed(context, Routes.homeView);
+    // _appPreferences.isUserLoggedIn().then(
+    //   (isUserLoggedIn) {
+    //     if (isUserLoggedIn) {
+    //       Navigator.pushReplacementNamed(context, Routes.homeView);
+    //     } else {
+    //       Navigator.pushReplacementNamed(context, Routes.loginView);
+    //     }
+    //   },
+    // );
   }
 
   @override
