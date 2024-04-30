@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/icons_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
+import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/new_booking.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -37,8 +39,8 @@ class MyDrawer extends StatelessWidget {
                     height: AppSize.s40,
                   ),
                   Image.asset(
-                    'assets/images/splash_logo.png',
-                    scale: AppSize.s1,
+                    ImageAssets.appLogo,
+                    scale: 18,
                   ),
                   Text(
                     "Raknety",
@@ -95,11 +97,9 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushNamed(
                           context,
-                          MaterialPageRoute(
-                            builder: (context) => const NewBookingScreen(),
-                          ),
+                          Routes.newBooking,
                         );
                       },
                       splashColor: ColorManager.primary,
@@ -118,12 +118,7 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => HelpPage(),
-                        //   ),
-                        // );
+                        Navigator.pushNamed(context, Routes.orderHistory);
                       },
                       splashColor: ColorManager.primary,
                     ),
