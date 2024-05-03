@@ -15,7 +15,7 @@ class AuthState extends Equatable {
     required this.error,
   });
 
-  AuthState.empty()
+  const AuthState.empty()
       : isPasswordVisible = false,
         isLoading = false,
         error = "",

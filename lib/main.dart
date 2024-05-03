@@ -5,6 +5,7 @@ import 'package:parking_app/bloc_observer.dart';
 import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/features/auth/presentation/controllers/cubit/auth_cubit.dart';
+import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/firebase_options.dart';
 
 void main() async {
@@ -26,7 +27,10 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AuthCubit(sl()),
+          create: (context) => sl<AuthCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<BookingCubit>(),
         ),
       ],
       child: const MaterialApp(
