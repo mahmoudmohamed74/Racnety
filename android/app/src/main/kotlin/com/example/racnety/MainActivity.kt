@@ -1,0 +1,6 @@
+package com.example.racnety
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
