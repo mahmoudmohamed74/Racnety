@@ -1,8 +1,10 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/core/widgets/loading_widget.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/custom_garage_widget.dart';
@@ -28,6 +30,9 @@ class NewBookingScreen extends StatelessWidget {
           // TODO: implement listener
         },
         builder: (context, state) {
+          if (state.isLoading) {
+            return const Center(child: LoadingWidget());
+          }
           return Column(
             children: [
               const SizedBox(
@@ -62,17 +67,27 @@ class NewBookingScreen extends StatelessWidget {
               const SizedBox(
                 height: AppSize.s5,
               ),
-              Expanded(
-                child: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: 4,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(
-                    height: AppSize.s5,
-                  ),
-                  itemBuilder: (BuildContext context, int index) =>
-                      const GarageCustomWidget(),
-                ),
+              ConditionalBuilder(
+                condition: state.garagesList.isNotEmpty,
+                builder: (context) {
+                  return Expanded(
+                    child: ListView.separated(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: state.garagesList.length,
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(
+                        height: AppSize.s5,
+                      ),
+                      itemBuilder: (BuildContext context, int index) =>
+                          GarageCustomWidget(
+                        garageModel: state.garagesList[index],
+                      ),
+                    ),
+                  );
+                },
+                fallback: (context) {
+                  return const Text("Sorry no garages are available");
+                },
               ),
             ],
           );

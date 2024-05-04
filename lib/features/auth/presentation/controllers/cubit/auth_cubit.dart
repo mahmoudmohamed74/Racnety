@@ -18,7 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit(
     this._baseAuthRepo,
-  ) : super(AuthState.empty());
+  ) : super(const AuthState.empty());
 
   static AuthCubit get(context) => BlocProvider.of(context);
   bool isPasswordVisible = false;

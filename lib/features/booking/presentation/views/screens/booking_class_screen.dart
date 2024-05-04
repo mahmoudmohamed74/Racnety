@@ -1,14 +1,20 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/core/widgets/loading_widget.dart';
+import 'package:parking_app/features/booking/data/models/garage_model.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
-import 'package:parking_app/features/booking/presentation/views/screens/booking_solts_screen.dart';
+import 'package:parking_app/features/booking/presentation/views/widgets/custom_area_widget.dart';
 
 class BookingClassScreen extends StatelessWidget {
-  const BookingClassScreen({super.key});
+  final GarageModel? garageModel;
+  const BookingClassScreen({
+    super.key,
+    this.garageModel,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,11 @@ class BookingClassScreen extends StatelessWidget {
       body: BlocConsumer<BookingCubit, BookingState>(
         listener: (context, state) {},
         builder: (context, state) {
+          if (state.isLoading) {
+            return const Center(child: LoadingWidget());
+          }
           return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Align(
                 alignment: Alignment.center,
@@ -37,21 +47,21 @@ class BookingClassScreen extends StatelessWidget {
                       width: 1.0, // Border width
                     ),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'City Star',
-                          style: TextStyle(
+                          garageModel?.name ?? '',
+                          style: const TextStyle(
                             fontSize: AppSize.s20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: AppSize.s10,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.directions_car,
                           size: AppSize.s30,
                         ),
@@ -63,60 +73,23 @@ class BookingClassScreen extends StatelessWidget {
               const SizedBox(
                 height: AppSize.s20,
               ),
-              Expanded(
-                child: ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: 4,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(
-                    height: AppSize.s5,
-                  ),
-                  itemBuilder: (BuildContext context, int index) => InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const BookingSlotsScreen(),
-                        ),
-                      );
-                    },
-                    child: Card(
-                      elevation: AppSize.s3,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppSize.s12),
-                      ),
-                      color: ColorManager.white,
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: AppSize.s30,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'A1',
-                                style: TextStyle(
-                                  fontSize: AppSize.s30,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: AppSize.s10,
-                              ),
-                              Image.asset(
-                                ImageAssets.class_,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: AppSize.s30,
-                          ),
-                        ],
-                      ),
+              ConditionalBuilder(
+                condition: state.areasList.isNotEmpty,
+                builder: (context) => Expanded(
+                  child: ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: state.areasList.length,
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const SizedBox(
+                      height: AppSize.s5,
+                    ),
+                    itemBuilder: (BuildContext context, int index) =>
+                        CustomAreaWidget(
+                      areaModel: state.areasList[index],
                     ),
                   ),
                 ),
+                fallback: (context) => const Text("No areas are available."),
               ),
             ],
           );

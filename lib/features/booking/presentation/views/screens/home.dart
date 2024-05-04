@@ -3,11 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
-import 'package:parking_app/core/requests/book_ticket_request.dart';
 import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
-import 'package:parking_app/features/booking/data/repos/base_booking_repo.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 import 'package:parking_app/features/payment/paypal_payment.dart';
 

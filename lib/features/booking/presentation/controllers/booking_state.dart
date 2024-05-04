@@ -2,39 +2,39 @@ part of 'booking_cubit.dart';
 
 class BookingState extends Equatable {
   final bool isLoading;
-  final List<AreaModel> communitiesList;
-  final List<AreaModel> unitsList;
-  final List<GarageModel> gendersList;
+  final List<AreaModel> slotsList;
+  final List<AreaModel> areasList;
+  final List<GarageModel> garagesList;
   final String? error;
 
   const BookingState({
     required this.isLoading,
     required this.error,
-    required this.communitiesList,
-    required this.unitsList,
-    required this.gendersList,
+    required this.slotsList,
+    required this.areasList,
+    required this.garagesList,
   });
 
   BookingState.empty()
       : isLoading = false,
         error = null,
-        communitiesList = [],
-        unitsList = [],
-        gendersList = [];
+        slotsList = [],
+        areasList = [],
+        garagesList = [];
 
   BookingState copyWith({
     bool? isLoading,
     String? error,
-    List<AreaModel>? communitiesList,
-    List<AreaModel>? unitsList,
-    List<GarageModel>? gendersList,
+    List<AreaModel>? slotsList,
+    List<AreaModel>? areasList,
+    List<GarageModel>? garagesList,
   }) {
     return BookingState(
       isLoading: isLoading ?? this.isLoading,
       error: error ?? this.error,
-      communitiesList: communitiesList ?? this.communitiesList,
-      unitsList: unitsList ?? this.unitsList,
-      gendersList: gendersList ?? this.gendersList,
+      slotsList: slotsList ?? this.slotsList,
+      areasList: areasList ?? this.areasList,
+      garagesList: garagesList ?? this.garagesList,
     );
   }
 
@@ -42,8 +42,8 @@ class BookingState extends Equatable {
   List<Object?> get props => [
         isLoading,
         error,
-        communitiesList,
-        unitsList,
-        gendersList,
+        slotsList,
+        areasList,
+        garagesList,
       ];
 }

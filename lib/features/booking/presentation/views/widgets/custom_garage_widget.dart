@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parking_app/core/global/resources/icons_manger.dart';
+import 'package:parking_app/features/booking/data/models/garage_model.dart';
+import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_class_screen.dart';
 
 import '../../../../../core/assets/app_assets.dart';
@@ -7,18 +10,25 @@ import '../../../../../core/global/resources/values_manger.dart';
 import '../../../../../core/themes/color_manager.dart';
 
 class GarageCustomWidget extends StatelessWidget {
+  final GarageModel garageModel;
   const GarageCustomWidget({
     super.key,
+    required this.garageModel,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        context.read<BookingCubit>().getAreas(
+              garageId: garageModel.id ?? 1,
+            );
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const BookingClassScreen(),
+            builder: (context) => BookingClassScreen(
+              garageModel: garageModel,
+            ),
           ),
         );
       },
@@ -48,23 +58,23 @@ class GarageCustomWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(AppSize.s12),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: AppSize.s7,
                       ),
-                      Icon(
+                      const Icon(
                         IconBroken.Location,
                       ),
                       Text(
-                        'City Star',
-                        style: TextStyle(
+                        garageModel.name ?? "empty",
+                        style: const TextStyle(
                           fontSize: AppSize.s20,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: AppSize.s10,
                       ),
                     ],
@@ -72,16 +82,17 @@ class GarageCustomWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
-              height: AppSize.s10,
-            ),
-            const Text(
-              'Price : 20 LE/Hour',
-              style: TextStyle(
-                fontSize: AppSize.s20,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            // const SizedBox(
+            //   height: AppSize.s10,
+            // ),
+            // const Text(
+            //   'Price : 20 LE/Hour',
+            //   style: TextStyle(
+            //     fontSize: AppSize.s20,
+            //     fontWeight: FontWeight.w500,
+            //   ),
+            // ),
+
             Padding(
               padding: const EdgeInsets.only(
                 left: AppSize.s20,

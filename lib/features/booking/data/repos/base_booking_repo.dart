@@ -10,15 +10,15 @@ abstract class BaseBookingRepo {
   // Garages
   Future<Either<Failure, List<GarageModel>>> getGarages();
   Future<Either<Failure, List<GarageModel>>> getGaragesInfo();
-  Future<Either<Failure, List<GarageModel>>> getSlotsByGarage({
+  Future<Either<Failure, List<GarageModel>>> getAreasByGarage({
     required int garageId,
   });
 
   // areas & slots
-  Future<Either<Failure, List<AreaModel>>> getAreaBySlot({
+  Future<Either<Failure, List<AreaModel>>> getSlotsByArea({
     required int areaId,
   });
-  Future<Either<Failure, List<AreaModel>>> getAreaBySlotDis({
+  Future<Either<Failure, List<AreaModel>>> getSlotsByAreasDis({
     required int areaId,
   });
   Future<Either<Failure, List<TicketModel>>> getBookingHist({

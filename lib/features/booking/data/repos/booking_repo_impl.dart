@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:parking_app/core/network/connectivity_service.dart';
 import 'package:parking_app/core/network/dio_factory.dart';
 import 'package:parking_app/core/network/end_points.dart';
@@ -28,9 +27,9 @@ class BookingRepoImpl implements BaseBookingRepo {
 
         final List<GarageModel> garagesList =
             garagesData.map((json) => GarageModel.fromJson(json)).toList();
-        if (kDebugMode) {
-          print("garages ${garagesList.first.toString()}");
-        }
+        // if (kDebugMode) {
+        //   print("garages ${garagesList.first.toString()}");
+        // }
         return right(garagesList);
       } on Exception catch (e) {
         if (e is DioException) {
@@ -54,9 +53,9 @@ class BookingRepoImpl implements BaseBookingRepo {
 
         final List<GarageModel> garagesInfoList =
             garagesInfoData.map((json) => GarageModel.fromJson(json)).toList();
-        if (kDebugMode) {
-          print("garagesInfo ${garagesInfoList.first.toString()}");
-        }
+        // if (kDebugMode) {
+        //   print("garagesInfo ${garagesInfoList.first.toString()}");
+        // }
         return right(garagesInfoList);
       } on Exception catch (e) {
         if (e is DioException) {
@@ -70,7 +69,7 @@ class BookingRepoImpl implements BaseBookingRepo {
   }
 
   @override
-  Future<Either<Failure, List<GarageModel>>> getSlotsByGarage({
+  Future<Either<Failure, List<GarageModel>>> getAreasByGarage({
     required int garageId,
   }) async {
     if (await connectivityService.isOnline()) {
@@ -83,9 +82,9 @@ class BookingRepoImpl implements BaseBookingRepo {
         final List<GarageModel> slotsByGaragesList = slotsByGaragesData
             .map((json) => GarageModel.fromJson(json))
             .toList();
-        if (kDebugMode) {
-          print("slotsByGarages ${slotsByGaragesList.first.toString()}");
-        }
+        // if (kDebugMode) {
+        //   print("slotsByGarages ${slotsByGaragesList.first.toString()}");
+        // }
         return right(slotsByGaragesList);
       } on Exception catch (e) {
         if (e is DioException) {
@@ -99,7 +98,7 @@ class BookingRepoImpl implements BaseBookingRepo {
   }
 
   @override
-  Future<Either<Failure, List<AreaModel>>> getAreaBySlot({
+  Future<Either<Failure, List<AreaModel>>> getSlotsByArea({
     required int areaId,
   }) async {
     if (await connectivityService.isOnline()) {
@@ -111,9 +110,7 @@ class BookingRepoImpl implements BaseBookingRepo {
 
         final List<AreaModel> areasList =
             areasData.map((json) => AreaModel.fromJson(json)).toList();
-        if (kDebugMode) {
-          print("Area by slot ${areasList.first.toString()}");
-        }
+
         return right(areasList);
       } on Exception catch (e) {
         if (e is DioException) {
@@ -127,7 +124,7 @@ class BookingRepoImpl implements BaseBookingRepo {
   }
 
   @override
-  Future<Either<Failure, List<AreaModel>>> getAreaBySlotDis({
+  Future<Either<Failure, List<AreaModel>>> getSlotsByAreasDis({
     required int areaId,
   }) async {
     if (await connectivityService.isOnline()) {
@@ -139,9 +136,7 @@ class BookingRepoImpl implements BaseBookingRepo {
 
         final List<AreaModel> areasList =
             areasData.map((json) => AreaModel.fromJson(json)).toList();
-        if (kDebugMode) {
-          print("Area by slot dis ${areasList.first.toString()}");
-        }
+
         return right(areasList);
       } on Exception catch (e) {
         if (e is DioException) {
@@ -167,9 +162,9 @@ class BookingRepoImpl implements BaseBookingRepo {
 
         final List<TicketModel> bookingHistList =
             bookingData.map((json) => TicketModel.fromJson(json)).toList();
-        if (kDebugMode) {
-          print("booking history list ${bookingHistList.first.toString()}");
-        }
+        // if (kDebugMode) {
+        //   print("booking history list ${bookingHistList.first.toString()}");
+        // }
         return right(bookingHistList);
       } on Exception catch (e) {
         if (e is DioException) {
@@ -199,9 +194,9 @@ class BookingRepoImpl implements BaseBookingRepo {
             ticketData.map((json) => TicketModel.fromJson(json)).toList();
 
         // final TicketModel ticketModel = TicketModel.fromJson(ticketData);
-        if (kDebugMode) {
-          print("ticketModel QR Code  ${ticketModel.first.toString()}");
-        }
+        // if (kDebugMode) {
+        //   print("ticketModel QR Code  ${ticketModel.first.toString()}");
+        // }
         return right(ticketModel);
       } on Exception catch (e) {
         if (e is DioException) {

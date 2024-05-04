@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/icons_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_router.dart';
-import 'package:parking_app/features/booking/presentation/views/screens/new_booking.dart';
+import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 
 class MyDrawer extends StatelessWidget {
   final VoidCallback? onTap;
@@ -97,6 +98,7 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
+                        context.read<BookingCubit>().getGarages();
                         Navigator.pushNamed(
                           context,
                           Routes.newBooking,
