@@ -177,7 +177,13 @@ class MyDrawer extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      onTap: onTap,
+                      onTap: () {
+                        // onTap;
+                        Navigator.pushNamed(
+                          context,
+                          Routes.forgotPassword,
+                        );
+                      },
                       splashColor: ColorManager.primary,
                     ),
                   ],

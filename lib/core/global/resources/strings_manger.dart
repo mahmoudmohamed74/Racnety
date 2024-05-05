@@ -43,6 +43,7 @@ class AppStrings {
   static const String loginAnnotation =
       "Use Credentials to access your account";
   static const String userNameHeadText = "Username";
+  static const String createNewPass = "Create a new password";
   static const String userNameHint = "Enter Username";
   static const String userNameError = "Name must be more than 2 character";
   static const String emailError = "Email Invalid! check your email";
@@ -60,6 +61,8 @@ class AppStrings {
   static const String passwordHeadText = "Password";
   static const String confirmPasswordHeadText = "Confirm Password";
   static const String passwordHint = "Enter Password";
+  static const String newPass = "New Password";
+  static const String confirmNewPass = "Confirm Password";
   static const String confirmPasswordHint = "Re-Enter Password";
   static const String passwordConfirmationError =
       "Password confirmation miss match";
@@ -71,6 +74,7 @@ class AppStrings {
   static const String signUp = "Sign up";
   static const String signIn = "Sign in";
   static const String logIn = "Login";
+  static const String save = "Save";
   static const String signUpWithGoogle = "Continue with Google";
   static const String doNotHaveAccount = "Does not have account ?";
   static const String haveAccount = "Already have an account ?";

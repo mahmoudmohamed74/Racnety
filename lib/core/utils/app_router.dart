@@ -1,6 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:parking_app/features/auth/presentation/views/screens/forget_pass_screen.dart';
 import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_class_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_details_screen.dart';
@@ -18,6 +19,7 @@ class Routes {
   static const String splashRoute = "/";
   static const String homeView = "/homeView";
   static const String loginView = "/loginView";
+  static const String forgotPassword = "/forgotPassword";
   static const String newBooking = "/newBooking";
   static const String bookingSlots = "/bookingSlots";
 
@@ -40,6 +42,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.loginView:
         return MaterialPageRoute(builder: (_) => const UserLoginScreen());
+      case Routes.forgotPassword:
+        return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
       case Routes.newBooking:
         return MaterialPageRoute(builder: (_) => const NewBookingScreen());
       case Routes.bookingSlots:
