@@ -124,8 +124,8 @@ class MyDrawer extends StatelessWidget {
                     ),
                     ListTile(
                       leading: Icon(
-                        Icons.phone_enabled_outlined,
-                        color: ColorManager.black,
+                        Icons.contact_phone_outlined,
+                        color: Colors.red,
                       ),
                       title: Text(
                         'Content us',
@@ -136,12 +136,10 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const ContactUsPage(),
-                        //   ),
-                        // );
+                        Navigator.pushNamed(
+                          context,
+                          Routes.contactUs,
+                        );
                       },
                       splashColor: ColorManager.primary,
                     ),

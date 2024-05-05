@@ -46,10 +46,14 @@ class AppStrings {
   static const String userNameHint = "Enter Username";
   static const String userNameError = "Name must be more than 2 character";
   static const String emailError = "Email Invalid! check your email";
+  static const String nameError = "Name Invalid! check your name";
   static const String passwordError = "6 characters, at least";
   static const String specializationError =
       "Specialization must be more than 4 character";
   static const String phoneError = "Enter Valid Phone Number (01********)";
+  static const String nameHint = "Full Name";
+  static const String emailAddressHint = "Email Address";
+  static const String message = "Message";
   static const String emailHint = "Enter Email";
   static const String emailHeadText = "Email";
   static const String passwordHeadText = "Password";
@@ -72,6 +76,7 @@ class AppStrings {
   static const String or = "OR";
   static const String confirmBooking = "Confirm Booking";
   static const String cancelBooking = "Cancel Booking";
+  static const String sendMessage = "Send Message";
 
   // layout
 

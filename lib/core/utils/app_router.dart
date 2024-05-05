@@ -6,6 +6,7 @@ import 'package:parking_app/features/booking/presentation/views/screens/booking_
 import 'package:parking_app/features/booking/presentation/views/screens/booking_details_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_solts_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/confirm_booking_screen.dart';
+import 'package:parking_app/features/booking/presentation/views/screens/contact_us_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/new_booking.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/order_history_screen.dart';
@@ -23,6 +24,7 @@ class Routes {
   static const String confirmBooking = "/confirmBooking";
   static const String orderHistory = "/orderHistory";
   static const String bookingDetails = "/bookingDetails";
+  static const String contactUs = "/contactUs";
 }
 
 class RouteGenerator {
@@ -46,6 +48,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const OrderHistoryScreen());
       case Routes.bookingDetails:
         return MaterialPageRoute(builder: (_) => const BookingDetailsScreen());
+      case Routes.contactUs:
+        return MaterialPageRoute(builder: (_) => ContactUsScreen());
       default:
         return unDefinedRoute();
     }
