@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_class_screen.dart';
+import 'package:parking_app/features/booking/presentation/views/screens/booking_details_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_solts_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/confirm_booking_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
@@ -21,6 +22,7 @@ class Routes {
 
   static const String confirmBooking = "/confirmBooking";
   static const String orderHistory = "/orderHistory";
+  static const String bookingDetails = "/bookingDetails";
 }
 
 class RouteGenerator {
@@ -41,7 +43,9 @@ class RouteGenerator {
       case Routes.confirmBooking:
         return MaterialPageRoute(builder: (_) => ConfirmBookingScreen());
       case Routes.orderHistory:
-        return MaterialPageRoute(builder: (_) => OrderHistoryScreen());
+        return MaterialPageRoute(builder: (_) => const OrderHistoryScreen());
+      case Routes.bookingDetails:
+        return MaterialPageRoute(builder: (_) => const BookingDetailsScreen());
       default:
         return unDefinedRoute();
     }

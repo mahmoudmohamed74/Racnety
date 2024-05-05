@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
+import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 
 class OrderHistoryScreen extends StatelessWidget {
@@ -57,7 +58,12 @@ class OrderHistoryScreen extends StatelessWidget {
                   height: AppSize.s20,
                 ),
                 itemBuilder: (BuildContext context, int index) => InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      Routes.bookingDetails,
+                    );
+                  },
                   child: Padding(
                     padding: EdgeInsets.only(
                       right: AppPadding.p20,
