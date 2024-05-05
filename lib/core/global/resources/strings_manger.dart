@@ -78,6 +78,7 @@ class AppStrings {
   static const String confirmBooking = "Confirm Booking";
   static const String cancelBooking = "Cancel Booking";
   static const String sendMessage = "Send Message";
+  static const String confirmRequest = "Confirm Request";
 
   // layout
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
+import 'package:parking_app/core/utils/app_router.dart';
 
 class ServiceWidget extends StatelessWidget {
   ServiceWidget({
@@ -21,6 +22,11 @@ class ServiceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Navigator.pushNamed(context, Routes.confirmServices, arguments: {
+          'serviceImage': serviceImage,
+          'serviceName': serviceType,
+          'servicePrice': price,
+        });
         print(serviceType);
         print(price);
       },
