@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 
@@ -12,32 +13,83 @@ class OrderHistoryScreen extends StatelessWidget {
         title: 'Order History',
         isBack: true,
       ),
-      body: const Padding(
+      body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: AppSize.s8,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            Text(
-              'Full Name',
-              style: TextStyle(
-                fontSize: AppSize.s20,
-                fontWeight: FontWeight.bold,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Full Name',
+                  style: TextStyle(
+                    fontSize: AppSize.s20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Book Duration   ',
+                  style: TextStyle(
+                    fontSize: AppSize.s20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Id    ',
+                  style: TextStyle(
+                    fontSize: AppSize.s20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
-            Text(
-              'Book Duration   ',
-              style: TextStyle(
-                fontSize: AppSize.s20,
-                fontWeight: FontWeight.bold,
-              ),
+            SizedBox(
+              height: AppSize.s20,
             ),
-            Text(
-              'Id    ',
-              style: TextStyle(
-                fontSize: AppSize.s20,
-                fontWeight: FontWeight.bold,
+            Expanded(
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemCount: 6,
+                separatorBuilder: (BuildContext context, int index) =>
+                    const SizedBox(
+                  height: AppSize.s20,
+                ),
+                itemBuilder: (BuildContext context, int index) => InkWell(
+                  onTap: () {},
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      right: AppPadding.p20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Hassan Elsherbiny',
+                          style: TextStyle(
+                            fontSize: AppSize.s15,
+                            color: Colors.green,
+                          ),
+                        ),
+                        Text(
+                          '04:00:00',
+                          style: TextStyle(
+                            fontSize: AppSize.s15,
+                            color: Colors.green,
+                          ),
+                        ),
+                        Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: AppSize.s15,
+                            color: Colors.green,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
