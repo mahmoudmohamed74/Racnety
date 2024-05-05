@@ -145,7 +145,7 @@ class MyDrawer extends StatelessWidget {
                     ),
                     ListTile(
                       leading: Icon(
-                        IconBroken.Setting,
+                        Icons.cleaning_services_outlined,
                         color: ColorManager.black,
                       ),
                       title: Text(
@@ -157,12 +157,10 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const ContactUsPage(),
-                        //   ),
-                        // );
+                        Navigator.pushNamed(
+                          context,
+                          Routes.services,
+                        );
                       },
                       splashColor: ColorManager.primary,
                     ),

@@ -54,6 +54,7 @@ class AppStrings {
   static const String nameHint = "Full Name";
   static const String emailAddressHint = "Email Address";
   static const String message = "Message";
+  static const String search = "Search by Service Name";
   static const String emailHint = "Enter Email";
   static const String emailHeadText = "Email";
   static const String passwordHeadText = "Password";

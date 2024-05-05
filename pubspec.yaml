@@ -83,6 +83,11 @@ flutter:
     - assets/images/qr.png
     - assets/images/paypal.png
     - assets/images/credit_card.png
+    - assets/images/balanced.png
+    - assets/images/compelet_washing.png
+    - assets/images/elec.png
+    - assets/images/washing_inside.png
+    - assets/images/wiper.png
 
   fonts:
     - family: IconBroken

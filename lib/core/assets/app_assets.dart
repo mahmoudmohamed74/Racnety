@@ -14,6 +14,11 @@ class ImageAssets {
   static const String credit_card = "$IMAGE_PATH/credit_card.png";
 
   static const String paypal = "$IMAGE_PATH/paypal.png";
+  static const String complete = "$IMAGE_PATH/compelet_washing.png";
+  static const String wiper = "$IMAGE_PATH/wiper.png";
+  static const String washing_inside = "$IMAGE_PATH/washing_inside.png";
+  static const String elec = "$IMAGE_PATH/elec.png";
+  static const String balanced = "$IMAGE_PATH/balanced.png";
 }
 
 class JsonAssets {
