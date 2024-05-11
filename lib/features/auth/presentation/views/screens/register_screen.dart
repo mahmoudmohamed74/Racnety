@@ -38,35 +38,32 @@ class UserRegisterScreen extends StatelessWidget {
           child: BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state.statusCode == 200 || state.statusCode == 201) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBarWidget(
-                    text: Text(
-                      "Your request has been sent successfully...",
-                      style: TextStyle(
-                        color: ColorManager.white,
-                        fontSize: AppSize.s16,
-                      ),
+                SnackBarWidget(
+                  text: Text(
+                    "Your request has been sent successfully...",
+                    style: TextStyle(
+                      color: ColorManager.white,
+                      fontSize: AppSize.s16,
                     ),
-                    backGroundColor: Colors.green,
                   ),
+                  backGroundColor: Colors.green,
                 );
+
                 Navigator.pushReplacementNamed(
                   context,
                   Routes.loginView,
                 );
               }
               if (state.error == '2') {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBarWidget(
-                    text: Text(
-                      "user register error ",
-                      style: TextStyle(
-                        color: ColorManager.white,
-                        fontSize: AppSize.s16,
-                      ),
+                SnackBarWidget(
+                  text: Text(
+                    "user register error ",
+                    style: TextStyle(
+                      color: ColorManager.white,
+                      fontSize: AppSize.s16,
                     ),
-                    backGroundColor: ColorManager.error,
                   ),
+                  backGroundColor: ColorManager.error,
                 );
               }
             },

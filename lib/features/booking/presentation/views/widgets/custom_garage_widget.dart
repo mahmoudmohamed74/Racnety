@@ -23,6 +23,7 @@ class GarageCustomWidget extends StatelessWidget {
         context.read<BookingCubit>().getAreas(
               garageId: garageModel.id ?? 1,
             );
+
         Navigator.push(
           context,
           MaterialPageRoute(

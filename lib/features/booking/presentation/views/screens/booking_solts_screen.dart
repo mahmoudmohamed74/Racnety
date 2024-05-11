@@ -8,7 +8,7 @@ import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/loading_widget.dart';
 import 'package:parking_app/features/booking/data/models/area_model.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
-import 'package:parking_app/features/booking/presentation/views/widgets/custom_slots_model.dart';
+import 'package:parking_app/features/booking/presentation/views/widgets/custom_slots_widget.dart';
 
 class BookingSlotsScreen extends StatelessWidget {
   final AreaModel? areaModel;

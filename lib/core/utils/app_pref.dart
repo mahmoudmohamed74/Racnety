@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
+import 'dart:developer';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String PREF_KEY_IS_USER_LOGGED_IN = "PREF_KEY_IS_USER_LOGGED_IN";
@@ -31,6 +33,7 @@ class AppPreferences {
   }
 
   Future<void> clean() async {
+    log("sharedPreferences cleaned");
     sharedPreferences.clear();
   }
 }

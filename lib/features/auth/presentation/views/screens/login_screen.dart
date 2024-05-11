@@ -41,6 +41,8 @@ class UserLoginScreen extends StatelessWidget {
             listener: (context, state) async {
               if (state.userModel?.tokenType != null) {
                 await _appPreferences.setIsUserLoggedIn();
+                await _appPreferences
+                    .saveUserId(state.userModel!.userId!.toString());
 
                 Navigator.pushReplacementNamed(
                   context,
@@ -48,17 +50,15 @@ class UserLoginScreen extends StatelessWidget {
                 );
               }
               if (state.error == '1') {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBarWidget(
-                    text: Text(
-                      "user login error ",
-                      style: TextStyle(
-                        color: ColorManager.white,
-                        fontSize: AppSize.s16,
-                      ),
+                SnackBarWidget(
+                  text: Text(
+                    "user login error",
+                    style: TextStyle(
+                      color: ColorManager.white,
+                      fontSize: AppSize.s16,
                     ),
-                    backGroundColor: ColorManager.error,
                   ),
+                  backGroundColor: ColorManager.error,
                 );
               }
             },
@@ -240,54 +240,5 @@ class UserLoginScreen extends StatelessWidget {
         ),
       ),
     );
-    //   BlocConsumer<AuthCubit, AuthState>(
-    //   listener: (context, state) async {
-    //     // if (state is AuthLogInSuccessState) {
-    //     //   // if (state.userData.user!.confirmed == true) {
-    //     //   if (state.userData.user!.type == "Doctor") {
-    //     //     print("Doctor Login success");
-    //     //     await _appPreferences.setIsDoctorLoggedIn();
-    //     //     await resetModules();
-    //     //     Navigator.pushNamed(
-    //     //       context,
-    //     //       Routes.layoutDoctorRoute,
-    //     //     );
-    //     //   } else if (state.userData.user!.type == "Patient") {
-    //     //     print("Patient Login success");
-    //     //     await _appPreferences.setIsPatientLoggedIn();
-    //     //     await resetModules();
-    //     //     Navigator.pushReplacementNamed(
-    //     //       context,
-    //     //       Routes.layoutPatientRoute,
-    //     //     );
-    //     //   }
-    //     //   // } else {
-    //     //   //   Navigator.pushNamed(
-    //     //   //     context,
-    //     //   //     Routes.userEmailConfirmationRoute,
-    //     //   //   );
-    //     //   // }
-    //     // } else if (state is AuthLogInErrorState) {
-    //     //   print("Doctor Login error");
-    //     //
-    //     //   ScaffoldMessenger.of(context).showSnackBar(
-    //     //     SnackBarWidget(
-    //     //       text: Text(
-    //     //         state.error,
-    //     //         style: TextStyle(
-    //     //           color: ColorManager.white,
-    //     //           fontSize: AppSize.s16,
-    //     //         ),
-    //     //       ),
-    //     //       backGroundColor: ColorManager.error,
-    //     //     ),
-    //     //   );
-    //     // }
-    //   },
-    //   builder: (context, state) {
-    //     // final cubit = AuthCubit.get(context);
-    //
-    //   },
-    // );
   }
 }
