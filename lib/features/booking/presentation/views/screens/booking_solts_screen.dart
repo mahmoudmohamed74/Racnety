@@ -91,6 +91,7 @@ class BookingSlotsScreen extends StatelessWidget {
                           state.slotsList.length,
                           (index) => CustomSlotsWidget(
                             slotsModel: state.slotsList[index],
+                            localReservedSlots: state.localSlots,
                           ),
                         ),
                       ),

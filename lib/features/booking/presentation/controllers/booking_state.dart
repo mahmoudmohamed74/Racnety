@@ -5,6 +5,7 @@ class BookingState extends Equatable {
   final List<AreaModel> slotsList;
   final List<AreaModel> areasList;
   final List<GarageModel> garagesList;
+  final List<int> localSlots;
   final int? selGarage;
   final int? selArea;
   final int? selSlot;
@@ -19,6 +20,7 @@ class BookingState extends Equatable {
     required this.selSlot,
     required this.isLoading,
     required this.error,
+    required this.localSlots,
     required this.startTime,
     required this.paymentId,
     required this.slotsList,
@@ -37,6 +39,7 @@ class BookingState extends Equatable {
         duration = null,
         paymentId = null,
         slotsList = [],
+        localSlots = [],
         areasList = [],
         garagesList = [];
 
@@ -48,6 +51,7 @@ class BookingState extends Equatable {
     List<AreaModel>? slotsList,
     List<AreaModel>? areasList,
     List<GarageModel>? garagesList,
+    List<int>? localSlots,
     int? selGarage,
     int? paymentId,
     int? selArea,
@@ -56,6 +60,7 @@ class BookingState extends Equatable {
     return BookingState(
       isLoading: isLoading ?? this.isLoading,
       selGarage: selGarage ?? this.selGarage,
+      localSlots: localSlots ?? this.localSlots,
       selArea: selArea ?? this.selArea,
       selSlot: selSlot ?? this.selSlot,
       error: error ?? this.error,
@@ -76,6 +81,7 @@ class BookingState extends Equatable {
         duration,
         startTime,
         slotsList,
+        localSlots,
         areasList,
         garagesList,
         selGarage,

@@ -32,6 +32,6 @@ class ServicesLocator {
 
     // cubits
     sl.registerFactory<AuthCubit>(() => AuthCubit(sl()));
-    sl.registerFactory<BookingCubit>(() => BookingCubit(sl()));
+    sl.registerFactory<BookingCubit>(() => BookingCubit(sl(), sl()));
   }
 }

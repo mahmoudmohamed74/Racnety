@@ -8,16 +8,19 @@ import 'package:parking_app/features/booking/presentation/views/screens/confirm_
 
 class CustomSlotsWidget extends StatelessWidget {
   final AreaModel slotsModel;
+  final List<int> localReservedSlots;
   const CustomSlotsWidget({
     super.key,
     required this.slotsModel,
+    required this.localReservedSlots,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (slotsModel.isAvailable!) {
+        if (slotsModel.isAvailable! &&
+            !localReservedSlots.contains(slotsModel.id)) {
           context.read<BookingCubit>().selectSlot(
                 slotsModel.id,
               );
@@ -31,7 +34,10 @@ class CustomSlotsWidget extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: slotsModel.isAvailable! ? Colors.green : Colors.red,
+          color: slotsModel.isAvailable! &&
+                  !localReservedSlots.contains(slotsModel.id)
+              ? Colors.green
+              : Colors.red,
           borderRadius: BorderRadius.circular(
             AppSize.s10,
           ),

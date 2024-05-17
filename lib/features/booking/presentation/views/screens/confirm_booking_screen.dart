@@ -42,11 +42,12 @@ class ConfirmBookingScreen extends StatelessWidget {
               );
             }
             if (state.error == "201") {
-              customSnackBar(
-                context: context,
-                message: "Your Request Is Under Progress",
-                isError: false,
-              );
+              showBookingConfirmationDialog(context);
+              // customSnackBar(
+              //   context: context,
+              //   message: "Your Request Is Under Progress",
+              //   isError: false,
+              // );
             }
           },
           builder: (context, state) {

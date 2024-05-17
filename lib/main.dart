@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           create: (context) => sl<AuthCubit>(),
         ),
         BlocProvider(
-          create: (context) => sl<BookingCubit>(),
+          create: (context) => sl<BookingCubit>()..loadNumbers(),
         ),
       ],
       child: const MaterialApp(

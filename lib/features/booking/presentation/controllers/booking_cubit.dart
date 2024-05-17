@@ -16,9 +16,31 @@ part 'booking_state.dart';
 
 class BookingCubit extends Cubit<BookingState> {
   final BaseBookingRepo _baseBookingRepo;
-  BookingCubit(this._baseBookingRepo) : super(BookingState.empty());
+  final AppPreferences _appPreferences;
+  BookingCubit(this._baseBookingRepo, this._appPreferences)
+      : super(BookingState.empty());
   static BookingCubit get(context) => BlocProvider.of(context);
 
+//
+  Future<void> loadNumbers() async {
+    List<int> numbers = await _appPreferences.loadNumbers();
+
+    emit(state.copyWith(localSlots: numbers));
+  }
+
+  Future<void> addNumber(int number) async {
+    await _appPreferences.addNumber(number);
+    List<int> updatedNumbers = await _appPreferences.loadNumbers();
+
+    emit(state.copyWith(localSlots: updatedNumbers));
+  }
+
+  Future<void> clearNumbers() async {
+    await _appPreferences.clearNumbers();
+    emit(state.copyWith(localSlots: []));
+  }
+
+//
   Future<void> getGarages() async {
     sl<AppPreferences>().getUserId().then((value) {
       log("userId $value");
@@ -212,7 +234,7 @@ class BookingCubit extends Cubit<BookingState> {
       isLoading: true,
       error: "",
     ));
-
+    addNumber(state.selSlot ?? 2);
     final bookRequest = BookRequest(
       garageId: state.selGarage ?? 2,
       slotId: state.selSlot ?? 2,

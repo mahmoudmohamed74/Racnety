@@ -112,47 +112,47 @@ class GarageCustomWidget extends StatelessWidget {
                       const SizedBox(
                         width: AppSize.s10,
                       ),
-                      const Text(
-                        '30',
-                        style: TextStyle(
+                      Text(
+                        "${garageModel.capacity}",
+                        style: const TextStyle(
                           fontSize: AppSize.s18,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star_border_outlined,
                         size: AppSize.s30,
                         color: Colors.green,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: AppSize.s10,
                       ),
                       Text(
-                        '14',
-                        style: TextStyle(
+                        "${garageModel.freeArea}",
+                        style: const TextStyle(
                           fontSize: AppSize.s18,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
                   ),
-                  const Row(
+                  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         size: AppSize.s30,
                         color: Colors.red,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: AppSize.s10,
                       ),
                       Text(
-                        '30',
-                        style: TextStyle(
+                        "${garageModel.reservedArea}",
+                        style: const TextStyle(
                           fontSize: AppSize.s18,
                           fontWeight: FontWeight.w500,
                         ),
