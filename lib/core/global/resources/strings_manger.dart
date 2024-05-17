@@ -9,6 +9,7 @@ class AppStrings {
   static const String emailAddressHint = "Email Address";
   static const String message = "Message";
   static const String nameError = "Name Invalid! check your name";
+  static const String search = "Search by Service Name";
   static const String onBoardingTitle2 = "Schedule Appointments";
   static const String onBoardingSubTitle2 =
       "Find experienced specialist doctors with expert ratings and reviews and book your appointments hassle-free.";
