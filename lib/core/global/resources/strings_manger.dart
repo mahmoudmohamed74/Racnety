@@ -11,6 +11,10 @@ class AppStrings {
   static const String nameError = "Name Invalid! check your name";
   static const String search = "Search by Service Name";
   static const String confirmRequest = "Confirm Request";
+  static const String createNewPass = "Create a new password";
+  static const String newPass = "New Password";
+  static const String confirmNewPass = "Confirm Password";
+  static const String save = "Save";
   static const String onBoardingTitle2 = "Schedule Appointments";
   static const String onBoardingSubTitle2 =
       "Find experienced specialist doctors with expert ratings and reviews and book your appointments hassle-free.";

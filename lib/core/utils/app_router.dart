@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parking_app/features/auth/presentation/views/screens/forget_pass_screen.dart';
 import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_class_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_details_screen.dart';
@@ -25,6 +26,7 @@ class Routes {
   static const String contactUs = "/contactUs";
   static const String services = "/services";
   static const String confirmServices = "/confirmServices";
+  static const String forgotPassword = "/forgotPassword";
 }
 
 class RouteGenerator {
@@ -54,7 +56,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ContactUsScreen());
       case Routes.services:
         return MaterialPageRoute(builder: (_) => ServicesScreen());
-
+      case Routes.forgotPassword:
+        return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
       default:
         return unDefinedRoute();
     }
