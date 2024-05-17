@@ -12,4 +12,8 @@ extension EmailValidator on String {
   bool isValidPassword() {
     return RegExp(r'^.{6,}$').hasMatch(this);
   }
+
+  bool isValidName() {
+    return RegExp(r'^[a-zA-Z\s]{2,}$').hasMatch(this);
+  }
 }

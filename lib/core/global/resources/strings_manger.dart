@@ -3,7 +3,12 @@ class AppStrings {
   static const String onBoardingTitle1 = "Easy Consultation";
   static const String onBoardingSubTitle1 =
       "Get access to a network of experienced doctors ready to provide quality healthcare at your fingertips.";
-
+  static const String cancelBooking = "Cancel Booking";
+  static const String sendMessage = "Send Message";
+  static const String nameHint = "Full Name";
+  static const String emailAddressHint = "Email Address";
+  static const String message = "Message";
+  static const String nameError = "Name Invalid! check your name";
   static const String onBoardingTitle2 = "Schedule Appointments";
   static const String onBoardingSubTitle2 =
       "Find experienced specialist doctors with expert ratings and reviews and book your appointments hassle-free.";
