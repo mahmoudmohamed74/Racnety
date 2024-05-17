@@ -5,6 +5,7 @@ import 'package:parking_app/core/network/dio_factory.dart';
 import 'package:parking_app/core/network/end_points.dart';
 import 'package:parking_app/core/requests/book_ticket_request.dart';
 import 'package:parking_app/features/booking/data/models/area_model.dart';
+import 'package:parking_app/features/booking/data/models/service_model.dart';
 import 'package:parking_app/features/booking/data/models/ticket_model.dart';
 import 'package:parking_app/features/booking/data/repos/base_booking_repo.dart';
 import 'package:parking_app/features/booking/data/models/garage_model.dart';
@@ -244,6 +245,32 @@ class BookingRepoImpl implements BaseBookingRepo {
         );
 
         return right(result);
+      } on Exception catch (e) {
+        if (e is DioException) {
+          return left(ServerFailure.fromDioError(e));
+        }
+        return left(ServerFailure(e.toString()));
+      }
+    } else {
+      return left(const ServerFailure("No internet connection"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ServiceModel>>> getServices() async {
+    if (await connectivityService.isOnline()) {
+      try {
+        final response = await dioFactory.getReq(
+          endPoint: EndPoints.getServicesEndPoint,
+        );
+        final List<dynamic> servicesData = response.data;
+
+        final List<ServiceModel> servicesList =
+            servicesData.map((json) => ServiceModel.fromJson(json)).toList();
+        // if (kDebugMode) {
+        //   print("garages ${servicesList.first.toString()}");
+        // }
+        return right(servicesList);
       } on Exception catch (e) {
         if (e is DioException) {
           return left(ServerFailure.fromDioError(e));

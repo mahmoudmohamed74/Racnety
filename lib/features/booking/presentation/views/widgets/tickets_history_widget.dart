@@ -51,9 +51,7 @@ class TicketsHistoryWidget extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             itemCount: ticketsList.length,
             separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(
-              height: AppSize.s20,
-            ),
+                const Divider(),
             itemBuilder: (BuildContext context, int index) => InkWell(
               onTap: () {
                 Navigator.pushNamed(

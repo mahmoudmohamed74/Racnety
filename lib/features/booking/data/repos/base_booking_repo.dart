@@ -4,6 +4,7 @@ import 'package:parking_app/core/errors/failure.dart';
 import 'package:parking_app/core/requests/book_ticket_request.dart';
 import 'package:parking_app/features/booking/data/models/area_model.dart';
 import 'package:parking_app/features/booking/data/models/garage_model.dart';
+import 'package:parking_app/features/booking/data/models/service_model.dart';
 import 'package:parking_app/features/booking/data/models/ticket_model.dart';
 
 abstract class BaseBookingRepo {
@@ -28,6 +29,7 @@ abstract class BaseBookingRepo {
     required int accountId,
     required int ticketId,
   });
+  Future<Either<Failure, List<ServiceModel>>> getServices();
   Future<Either<Failure, Response<dynamic>>> bookTicket({
     required BookRequest bookRequest,
   });

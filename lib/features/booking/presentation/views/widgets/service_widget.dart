@@ -1,31 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_router.dart';
+import 'package:parking_app/features/booking/data/models/service_model.dart';
 
 class ServiceWidget extends StatelessWidget {
   const ServiceWidget({
-    required this.serviceType,
-    required this.price,
-    required this.serviceImage,
+    required this.serviceModel,
+    required this.index,
     Key? key,
   }) : super(key: key);
 
-  final String serviceType;
-  final String price;
-  final String serviceImage;
+  final ServiceModel serviceModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final List<String> picList = [
+      ImageAssets.elec,
+      ImageAssets.wiper,
+      ImageAssets.washing_inside,
+      ImageAssets.balanced,
+      ImageAssets.complete,
+    ];
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, Routes.confirmServices, arguments: {
-          'serviceImage': serviceImage,
-          'serviceName': serviceType,
-          'servicePrice': price,
-        });
-        print(serviceType);
-        print(price);
+        Navigator.pushNamed(
+          context,
+          Routes.confirmServices,
+          arguments: {'serviceModel': serviceModel},
+        );
+        print(serviceModel.name);
+        print(serviceModel.serviceCost);
       },
       child: SizedBox(
         width: MediaQuery.of(context).size.width * .99,
@@ -43,7 +50,7 @@ class ServiceWidget extends StatelessWidget {
                   bottomLeft: Radius.circular(AppSize.s12),
                 ),
                 child: Image.asset(
-                  serviceImage,
+                  picList[index],
                   height: AppSize.s100,
                   width: AppSize.s120,
                   fit: BoxFit.cover,
@@ -57,7 +64,7 @@ class ServiceWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '$serviceType',
+                      '${serviceModel.name}',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: ColorManager.black,
@@ -66,7 +73,7 @@ class ServiceWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '$price LE',
+                      '${serviceModel.serviceCost} LE',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: ColorManager.grey,

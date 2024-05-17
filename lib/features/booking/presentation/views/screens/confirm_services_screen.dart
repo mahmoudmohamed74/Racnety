@@ -6,6 +6,7 @@ import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
+import 'package:parking_app/features/booking/data/models/service_model.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/car_model_widget.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -13,15 +14,12 @@ import 'package:path/path.dart';
 
 class ConfirmServiceScreen extends StatelessWidget {
   ConfirmServiceScreen({
-    required this.serviceImage,
-    required this.serviceName,
-    required this.servicePrice,
+    required this.serviceModel,
     Key? key,
   }) : super(key: key);
 
-  final String serviceImage;
-  final String serviceName;
-  final String servicePrice;
+  final ServiceModel serviceModel;
+
   final TextEditingController carModelController = TextEditingController();
 
   void onSelectCarModel(String selectedCarModel) {
@@ -142,7 +140,7 @@ class ConfirmServiceScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
-                      serviceImage,
+                      "serviceImage",
                       scale: .7,
                     ),
                   ),
@@ -161,7 +159,7 @@ class ConfirmServiceScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Service Cost : $servicePrice LE',
+                      'Service Cost : ${serviceModel.serviceCost} LE',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: ColorManager.black,
@@ -185,7 +183,7 @@ class ConfirmServiceScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Service Name : $serviceName',
+                      'Service Name : ${serviceModel.name}',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: ColorManager.black,
@@ -215,8 +213,9 @@ class ConfirmServiceScreen extends StatelessWidget {
                 if (carModelController.text != '') {
                   try {
                     final serviceData = {
-                      DatabaseHelper.columnServiceName: serviceName,
-                      DatabaseHelper.columnServicePrice: servicePrice,
+                      DatabaseHelper.columnServiceName: serviceModel.name,
+                      DatabaseHelper.columnServicePrice:
+                          serviceModel.serviceCost,
                       DatabaseHelper.columnCarModel: carModelController.text,
                     };
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:parking_app/features/auth/presentation/views/screens/forget_pass_screen.dart';
 import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
+import 'package:parking_app/features/booking/data/models/service_model.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_class_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_details_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_solts_screen.dart';
@@ -62,14 +63,17 @@ class RouteGenerator {
       case Routes.confirmServices:
         final Map<String, dynamic> arguments =
             routeSettings.arguments as Map<String, dynamic>;
-        final String serviceImage = arguments['serviceImage'] as String;
-        final String serviceName = arguments['serviceName'] as String;
-        final String servicePrice = arguments['servicePrice'] as String;
+        final ServiceModel serviceModel =
+            arguments['serviceModel'] as ServiceModel;
+        // final String serviceImage = arguments['serviceImage'] as String;
+        // final String serviceName = arguments['serviceName'] as String;
+        // final String servicePrice = arguments['servicePrice'] as String;
         return MaterialPageRoute(
             builder: (_) => ConfirmServiceScreen(
-                  serviceImage: serviceImage,
-                  serviceName: serviceName,
-                  servicePrice: servicePrice,
+                  serviceModel: serviceModel,
+                  // serviceImage: serviceImage,
+                  // serviceName: serviceName,
+                  // servicePrice: servicePrice,
                 ));
       default:
         return unDefinedRoute();

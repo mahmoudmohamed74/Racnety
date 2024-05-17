@@ -10,6 +10,7 @@ import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/features/booking/data/models/area_model.dart';
 import 'package:parking_app/features/booking/data/models/garage_model.dart';
+import 'package:parking_app/features/booking/data/models/service_model.dart';
 import 'package:parking_app/features/booking/data/models/ticket_model.dart';
 import 'package:parking_app/features/booking/data/repos/base_booking_repo.dart';
 
@@ -74,6 +75,33 @@ class BookingCubit extends Cubit<BookingState> {
           state.copyWith(
             isLoading: false,
             ticketHistList: r,
+            error: "",
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> getServices() async {
+    emit(state.copyWith(
+      isLoading: true,
+      error: "",
+    ));
+    final result = await _baseBookingRepo.getServices();
+
+    result.fold(
+      (l) => emit(
+        state.copyWith(
+          isLoading: false,
+          error: l.errorMessage,
+          servicesList: [],
+        ),
+      ),
+      (r) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            servicesList: r,
             error: "",
           ),
         );

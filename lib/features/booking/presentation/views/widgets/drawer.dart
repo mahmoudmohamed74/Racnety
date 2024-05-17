@@ -160,6 +160,7 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
+                        context.read<BookingCubit>().getServices();
                         Navigator.pushNamed(
                           context,
                           Routes.services,
