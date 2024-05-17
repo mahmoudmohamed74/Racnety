@@ -24,6 +24,7 @@ class Routes {
   static const String bookingDetails = "/bookingDetails";
   static const String contactUs = "/contactUs";
   static const String services = "/services";
+  static const String confirmServices = "/confirmServices";
 }
 
 class RouteGenerator {
