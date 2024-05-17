@@ -10,6 +10,7 @@ import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/features/booking/data/models/area_model.dart';
 import 'package:parking_app/features/booking/data/models/garage_model.dart';
+import 'package:parking_app/features/booking/data/models/ticket_model.dart';
 import 'package:parking_app/features/booking/data/repos/base_booking_repo.dart';
 
 part 'booking_state.dart';
@@ -41,6 +42,45 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
 //
+
+  void onToggleHistoryScreen(index) {
+    emit(state.copyWith(isLoading: true, selHistIndex: index));
+    emit(state.copyWith(isLoading: false, selHistIndex: index));
+  }
+
+  Future<void> getTicketsHist() async {
+    sl<AppPreferences>().getUserId().then((value) {
+      log("userId $value");
+      return _userID = int.tryParse(value!);
+    });
+    emit(state.copyWith(
+      isLoading: true,
+      error: "",
+    ));
+    final result = await _baseBookingRepo.getBookingHist(
+      accountId: _userID ?? 1,
+    );
+
+    result.fold(
+      (l) => emit(
+        state.copyWith(
+          isLoading: false,
+          error: l.errorMessage,
+          ticketHistList: [],
+        ),
+      ),
+      (r) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            ticketHistList: r,
+            error: "",
+          ),
+        );
+      },
+    );
+  }
+
   Future<void> getGarages() async {
     sl<AppPreferences>().getUserId().then((value) {
       log("userId $value");
@@ -172,16 +212,20 @@ class BookingCubit extends Cubit<BookingState> {
         );
       },
     ).then((value) {
+      final int hour = value!.hour;
+      final int minute = value.minute;
+      final int formattedHour = hour % 12 == 0 ? 12 : hour % 12;
+      final String minuteStr = minute.toString().padLeft(2, '0');
       if (isDuration) {
         emit(
           state.copyWith(
-            duration: value!.format(context).toString(),
+            duration: '$formattedHour : $minuteStr',
           ),
         );
       } else {
         emit(
           state.copyWith(
-            startTime: value!.format(context).toString(),
+            startTime: '$formattedHour : $minuteStr',
           ),
         );
       }

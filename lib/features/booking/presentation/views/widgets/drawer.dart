@@ -120,6 +120,7 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
+                        context.read<BookingCubit>().getTicketsHist();
                         Navigator.pushNamed(context, Routes.orderHistory);
                       },
                       splashColor: ColorManager.primary,

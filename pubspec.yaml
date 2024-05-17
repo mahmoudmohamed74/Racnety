@@ -55,6 +55,9 @@ dependencies:
   webview_flutter_x5: ^2.0.8+9
   cloud_firestore: ^4.16.0
   shared_preferences: ^2.2.3
+  sqflite: ^2.0.0
+  path_provider: ^2.0.0
+  toggle_switch: ^2.3.0
   # flutter_stripe: ^9.2.0
   
 dev_dependencies:

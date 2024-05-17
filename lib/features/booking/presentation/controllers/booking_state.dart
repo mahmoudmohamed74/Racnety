@@ -5,10 +5,12 @@ class BookingState extends Equatable {
   final List<AreaModel> slotsList;
   final List<AreaModel> areasList;
   final List<GarageModel> garagesList;
+  final List<TicketModel> ticketHistList;
   final List<int> localSlots;
   final int? selGarage;
   final int? selArea;
   final int? selSlot;
+  final int? selHistIndex;
   final int? paymentId;
   final String? duration;
   final String? startTime;
@@ -18,6 +20,7 @@ class BookingState extends Equatable {
     required this.selGarage,
     required this.selArea,
     required this.selSlot,
+    required this.selHistIndex,
     required this.isLoading,
     required this.error,
     required this.localSlots,
@@ -26,6 +29,7 @@ class BookingState extends Equatable {
     required this.slotsList,
     required this.areasList,
     required this.garagesList,
+    required this.ticketHistList,
     required this.duration,
   });
 
@@ -35,11 +39,13 @@ class BookingState extends Equatable {
         selGarage = null,
         selArea = null,
         selSlot = null,
+        selHistIndex = 0,
         startTime = null,
         duration = null,
         paymentId = null,
         slotsList = [],
         localSlots = [],
+        ticketHistList = [],
         areasList = [],
         garagesList = [];
 
@@ -51,11 +57,13 @@ class BookingState extends Equatable {
     List<AreaModel>? slotsList,
     List<AreaModel>? areasList,
     List<GarageModel>? garagesList,
+    List<TicketModel>? ticketHistList,
     List<int>? localSlots,
     int? selGarage,
     int? paymentId,
     int? selArea,
     int? selSlot,
+    int? selHistIndex,
   }) {
     return BookingState(
       isLoading: isLoading ?? this.isLoading,
@@ -63,8 +71,10 @@ class BookingState extends Equatable {
       localSlots: localSlots ?? this.localSlots,
       selArea: selArea ?? this.selArea,
       selSlot: selSlot ?? this.selSlot,
+      selHistIndex: selHistIndex ?? this.selHistIndex,
       error: error ?? this.error,
       paymentId: paymentId ?? this.paymentId,
+      ticketHistList: ticketHistList ?? this.ticketHistList,
       duration: duration ?? this.duration,
       startTime: startTime ?? this.startTime,
       slotsList: slotsList ?? this.slotsList,
@@ -84,8 +94,10 @@ class BookingState extends Equatable {
         localSlots,
         areasList,
         garagesList,
+        ticketHistList,
         selGarage,
         selArea,
         selSlot,
+        selHistIndex,
       ];
 }

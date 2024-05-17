@@ -5,6 +5,7 @@ import 'package:parking_app/features/booking/presentation/views/screens/booking_
 import 'package:parking_app/features/booking/presentation/views/screens/booking_details_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_solts_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/confirm_booking_screen.dart';
+import 'package:parking_app/features/booking/presentation/views/screens/confirm_services_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/contact_us.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/new_booking.dart';
@@ -58,6 +59,18 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => ServicesScreen());
       case Routes.forgotPassword:
         return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
+      case Routes.confirmServices:
+        final Map<String, dynamic> arguments =
+            routeSettings.arguments as Map<String, dynamic>;
+        final String serviceImage = arguments['serviceImage'] as String;
+        final String serviceName = arguments['serviceName'] as String;
+        final String servicePrice = arguments['servicePrice'] as String;
+        return MaterialPageRoute(
+            builder: (_) => ConfirmServiceScreen(
+                  serviceImage: serviceImage,
+                  serviceName: serviceName,
+                  servicePrice: servicePrice,
+                ));
       default:
         return unDefinedRoute();
     }

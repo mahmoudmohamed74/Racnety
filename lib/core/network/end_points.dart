@@ -16,4 +16,5 @@ class EndPoints {
   static const String bookTicketEndPoint = "api/BookGarageTickets/BookTicket";
   static const String deleteBookEndPoint =
       "api/BookGarageTickets/CancelBooking";
+  static const String getServicesEndPoint = "api/Services/GetServices";
 }

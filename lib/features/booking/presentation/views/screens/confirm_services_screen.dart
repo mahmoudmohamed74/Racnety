@@ -4,8 +4,12 @@ import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/car_model_widget.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart';
 
 class ConfirmServiceScreen extends StatelessWidget {
   ConfirmServiceScreen({
@@ -208,31 +212,71 @@ class ConfirmServiceScreen extends StatelessWidget {
               text: AppStrings.confirmRequest,
               fontWeight: FontWeight.bold,
               onTap: () async {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      content: const Text(
-                        'Your Service made Successful\nWe are Waiting You',
+                if (carModelController.text != '') {
+                  try {
+                    final serviceData = {
+                      DatabaseHelper.columnServiceName: serviceName,
+                      DatabaseHelper.columnServicePrice: servicePrice,
+                      DatabaseHelper.columnCarModel: carModelController.text,
+                    };
+
+                    final id =
+                        await DatabaseHelper.instance.insert(serviceData);
+
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: const Text(
+                            'Your Service made Successfull\nWe are Waiting You',
+                            style: TextStyle(
+                              fontSize: AppSize.s16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text('ALRIGHT'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    Future.delayed(const Duration(seconds: 3), () {
+                      Navigator.pushReplacementNamed(context, Routes.homeView);
+                    });
+                  } catch (error) {
+                    print('Error storing service data: $error');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBarWidget(
+                        text: Text(
+                          'An error please try again',
+                          style: TextStyle(
+                            color: ColorManager.white,
+                            fontSize: AppSize.s16,
+                          ),
+                        ),
+                        backGroundColor: ColorManager.error,
+                      ),
+                    );
+                  }
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBarWidget(
+                      text: Text(
+                        'Please Select Car Model',
                         style: TextStyle(
+                          color: ColorManager.white,
                           fontSize: AppSize.s16,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Text('ALRIGHT'),
-                        ),
-                      ],
-                    );
-                  },
-                );
-                Future.delayed(const Duration(seconds: 2), () {
-                  Navigator.pushReplacementNamed(context, Routes.homeView);
-                });
+                      backGroundColor: ColorManager.error,
+                    ),
+                  );
+                }
               },
             ),
             const SizedBox(
@@ -242,5 +286,49 @@ class ConfirmServiceScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class DatabaseHelper {
+  static const _databaseName = 'services.db';
+  static const _databaseVersion = 1;
+
+  static const table = 'services';
+  static const columnId = 'id';
+  static const columnServiceName = 'serviceName';
+  static const columnServicePrice = 'servicePrice';
+  static const columnCarModel = 'carModel';
+
+  DatabaseHelper._privateConstructor();
+  static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
+
+  static Database? _database;
+  Future<Database> get database async {
+    if (_database != null) return _database!;
+    _database = await _initDatabase();
+    return _database!;
+  }
+
+  _initDatabase() async {
+    var documentsDirectory = await getApplicationDocumentsDirectory();
+    var path = join(documentsDirectory.path, _databaseName);
+    return await openDatabase(path,
+        version: _databaseVersion, onCreate: _onCreate);
+  }
+
+  Future _onCreate(Database db, int version) async {
+    await db.execute('''
+          CREATE TABLE $table (
+            $columnId INTEGER PRIMARY KEY,
+            $columnServiceName TEXT NOT NULL,
+            $columnServicePrice TEXT NOT NULL,
+            $columnCarModel TEXT NOT NULL
+          )
+          ''');
+  }
+
+  Future<int> insert(Map<String, dynamic> row) async {
+    Database db = await instance.database;
+    return await db.insert(table, row);
   }
 }
