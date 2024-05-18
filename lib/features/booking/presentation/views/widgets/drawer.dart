@@ -5,6 +5,7 @@ import 'package:parking_app/core/global/resources/icons_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_router.dart';
+import 'package:parking_app/features/auth/presentation/controllers/cubit/auth_cubit.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -182,7 +183,7 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        context.read<BookingCubit>().logout(context);
+                        context.read<AuthCubit>().logout(context);
                       },
                       splashColor: ColorManager.primary,
                     ),

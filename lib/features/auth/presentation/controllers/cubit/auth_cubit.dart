@@ -8,6 +8,7 @@ import 'package:parking_app/core/requests/register_request.dart';
 import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/features/auth/data/models/user_model.dart';
+import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
 
 import '../../../data/repos/auth_repo.dart';
 
@@ -102,6 +103,15 @@ class AuthCubit extends Cubit<AuthState> {
           error: "",
         ),
       ),
+    );
+  }
+
+  Future<void> logout(context) async {
+    await sl<AppPreferences>().logoutUser();
+    emit(const AuthState.empty());
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => UserLoginScreen()),
     );
   }
 

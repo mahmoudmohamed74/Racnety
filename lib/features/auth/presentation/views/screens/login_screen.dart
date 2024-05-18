@@ -50,16 +50,21 @@ class UserLoginScreen extends StatelessWidget {
                 );
               }
               if (state.error == '1') {
-                SnackBarWidget(
-                  text: Text(
-                    "user login error",
-                    style: TextStyle(
-                      color: ColorManager.white,
-                      fontSize: AppSize.s16,
-                    ),
-                  ),
-                  backGroundColor: ColorManager.error,
+                customSnackBar(
+                  context: context,
+                  message: "user login error",
+                  isError: true,
                 );
+                // SnackBarWidget(
+                //   text: Text(
+                //     "user login error",
+                //     style: TextStyle(
+                //       color: ColorManager.white,
+                //       fontSize: AppSize.s16,
+                //     ),
+                //   ),
+                //   backGroundColor: ColorManager.error,
+                // );
               }
             },
             builder: (context, state) {

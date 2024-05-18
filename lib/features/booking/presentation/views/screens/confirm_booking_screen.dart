@@ -34,7 +34,7 @@ class ConfirmBookingScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: BlocConsumer<BookingCubit, BookingState>(
           listener: (context, state) {
-            if (state.error!.contains("error")) {
+            if (state.error!.contains("*")) {
               customSnackBar(
                 context: context,
                 message: "${state.error}",

@@ -8,7 +8,6 @@ import 'package:parking_app/core/requests/book_ticket_request.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
-import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
 import 'package:parking_app/features/booking/data/models/area_model.dart';
 import 'package:parking_app/features/booking/data/models/garage_model.dart';
 import 'package:parking_app/features/booking/data/models/service_model.dart';
@@ -33,16 +32,12 @@ class BookingCubit extends Cubit<BookingState> {
 
   Future<void> addNumber(int number) async {
     await _appPreferences.addNumber(number);
-    List<int> updatedNumbers = await _appPreferences.loadNumbers();
-
-    emit(state.copyWith(localSlots: updatedNumbers));
+    loadNumbers();
   }
 
   Future<void> deleteNumber(int number) async {
     await _appPreferences.deleteNumber(number);
-    List<int> updatedNumbers = await _appPreferences.loadNumbers();
-
-    emit(state.copyWith(localSlots: updatedNumbers));
+    loadNumbers();
   }
 
   Future<void> clearNumbers() async {
@@ -156,7 +151,7 @@ class BookingCubit extends Cubit<BookingState> {
     ));
 
     final result = await _baseBookingRepo.getSlotsByArea(areaId: garageId);
-
+    loadNumbers();
     result.fold(
       (l) => emit(
         state.copyWith(
@@ -256,12 +251,14 @@ class BookingCubit extends Cubit<BookingState> {
         emit(
           state.copyWith(
             duration: '$formattedHour : $minuteStr',
+            error: "",
           ),
         );
       } else {
         emit(
           state.copyWith(
             startTime: '$formattedHour : $minuteStr',
+            error: "",
           ),
         );
       }
@@ -371,7 +368,7 @@ class BookingCubit extends Cubit<BookingState> {
       ticketId: ticketId,
       accountId: _userID ?? 1,
     );
-    deleteNumber(ticketId);
+    deleteNumber(3);
 
     result.fold(
       (l) => emit(
@@ -388,15 +385,8 @@ class BookingCubit extends Cubit<BookingState> {
             error: "${r.statusCode}",
           ),
         );
+        getTicketsHist();
       },
-    );
-  }
-
-  Future<void> logout(context) async {
-    await _appPreferences.logoutUser();
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => UserLoginScreen()),
     );
   }
 }
