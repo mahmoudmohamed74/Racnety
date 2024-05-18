@@ -26,7 +26,14 @@ class AuthCubit extends Cubit<AuthState> {
   void changePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
     passwordIcon = isPasswordVisible ? Icons.visibility_off : Icons.visibility;
-    emit(state.copyWith(isPasswordVisible: !state.isPasswordVisible));
+    emit(
+      state.copyWith(
+        isPasswordVisible: !state.isPasswordVisible,
+        isLoading: false,
+        error: "",
+        statusCode: 0,
+      ),
+    );
   }
 
   UserModel? userModel;

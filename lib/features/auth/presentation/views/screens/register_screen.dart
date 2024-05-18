@@ -38,16 +38,21 @@ class UserRegisterScreen extends StatelessWidget {
           child: BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
               if (state.statusCode == 200 || state.statusCode == 201) {
-                SnackBarWidget(
-                  text: Text(
-                    "Your request has been sent successfully...",
-                    style: TextStyle(
-                      color: ColorManager.white,
-                      fontSize: AppSize.s16,
-                    ),
-                  ),
-                  backGroundColor: Colors.green,
+                customSnackBar(
+                  context: context,
+                  message: "Your request has been sent successfully...",
+                  isError: false,
                 );
+                // SnackBarWidget(
+                //   text: Text(
+                //     "Your request has been sent successfully...",
+                //     style: TextStyle(
+                //       color: ColorManager.white,
+                //       fontSize: AppSize.s16,
+                //     ),
+                //   ),
+                //   backGroundColor: Colors.green,
+                // );
 
                 Navigator.pushReplacementNamed(
                   context,
@@ -55,16 +60,21 @@ class UserRegisterScreen extends StatelessWidget {
                 );
               }
               if (state.error == '2') {
-                SnackBarWidget(
-                  text: Text(
-                    "user register error ",
-                    style: TextStyle(
-                      color: ColorManager.white,
-                      fontSize: AppSize.s16,
-                    ),
-                  ),
-                  backGroundColor: ColorManager.error,
+                customSnackBar(
+                  context: context,
+                  message: "Something went wrong please try again later",
+                  isError: true,
                 );
+                // SnackBarWidget(
+                //   text: Text(
+                //     "user register error ",
+                //     style: TextStyle(
+                //       color: ColorManager.white,
+                //       fontSize: AppSize.s16,
+                //     ),
+                //   ),
+                //   backGroundColor: ColorManager.error,
+                // );
               }
             },
             builder: (context, state) {
@@ -153,6 +163,7 @@ class UserRegisterScreen extends StatelessWidget {
                     FormFieldWidget(
                       headText: AppStrings.confirmPasswordHeadText,
                       hintText: AppStrings.confirmPasswordHint,
+                      obscureText: !state.isPasswordVisible,
                       controller: _confirmPasswordEditingController,
                       type: TextInputType.number,
                       validator: (String? s) {

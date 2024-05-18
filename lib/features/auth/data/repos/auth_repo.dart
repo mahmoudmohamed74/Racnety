@@ -9,7 +9,8 @@ import '../../../../core/errors/failure.dart';
 
 abstract class BaseAuthRepo {
   Future<Either<Failure, Response<dynamic>>> register(
-      RegisterRequest registerRequest);
+    RegisterRequest registerRequest,
+  );
   Future<Either<Failure, UserModel>> login(LoginRequest loginRequest);
   Future<Either<Failure, Response<dynamic>>> forgerPassword(
     ForgotPasswordRequest forgotPasswordRequest,

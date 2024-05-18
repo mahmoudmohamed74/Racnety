@@ -51,12 +51,15 @@ class TicketsHistoryWidget extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             itemCount: ticketsList.length,
             separatorBuilder: (BuildContext context, int index) =>
-                const Divider(),
+                const Divider(
+              height: 20,
+            ),
             itemBuilder: (BuildContext context, int index) => InkWell(
               onTap: () {
                 Navigator.pushNamed(
                   context,
                   Routes.bookingDetails,
+                  arguments: {'ticketModel': ticketsList[index]},
                 );
               },
               child: Padding(

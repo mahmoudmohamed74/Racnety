@@ -44,6 +44,12 @@ class AppPreferences {
     await saveNumbers(currentNumbers);
   }
 
+  Future<void> deleteNumber(int number) async {
+    List<int> currentNumbers = await loadNumbers();
+    currentNumbers.remove(number);
+    await saveNumbers(currentNumbers);
+  }
+
   Future<void> saveNumbers(List<int> numbers) async {
     List<String> numbersStringList =
         numbers.map((numbers) => numbers.toString()).toList();

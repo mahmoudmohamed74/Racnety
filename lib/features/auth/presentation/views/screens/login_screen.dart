@@ -143,10 +143,10 @@ class UserLoginScreen extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            // Navigator.pushReplacementNamed(
-                            //   context,
-                            //   Routes.forgotPasswordRoute,
-                            // );
+                            Navigator.pushNamed(
+                              context,
+                              Routes.forgotPassword,
+                            );
                           },
                         ),
                       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parking_app/features/auth/presentation/views/screens/forget_pass_screen.dart';
 import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
 import 'package:parking_app/features/booking/data/models/service_model.dart';
+import 'package:parking_app/features/booking/data/models/ticket_model.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_class_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_details_screen.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/booking_solts_screen.dart';
@@ -53,7 +54,14 @@ class RouteGenerator {
       case Routes.orderHistory:
         return MaterialPageRoute(builder: (_) => const OrderHistoryScreen());
       case Routes.bookingDetails:
-        return MaterialPageRoute(builder: (_) => const BookingDetailsScreen());
+        final Map<String, dynamic> arguments =
+            routeSettings.arguments as Map<String, dynamic>;
+        final TicketModel ticketModel = arguments['ticketModel'] as TicketModel;
+        return MaterialPageRoute(
+          builder: (_) => BookingDetailsScreen(
+            ticketModel: ticketModel,
+          ),
+        );
       case Routes.contactUs:
         return MaterialPageRoute(builder: (_) => ContactUsScreen());
       case Routes.services:

@@ -18,8 +18,8 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBarWidget(
         title: 'About Us',
         isBack: false,
-        isTextButton: true,
-        textButton: 'LOGOUT',
+        // isTextButton: true,
+        // textButton: 'LOGOUT',
         onTap: () {
           // sl.get<BaseGarageRepo>().getGarages();
           // sl.get<BaseBookingRepo>().getAreaBySlot(areaId: 1);

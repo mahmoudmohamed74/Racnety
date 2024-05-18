@@ -182,10 +182,7 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          Routes.forgotPassword,
-                        );
+                        context.read<BookingCubit>().logout(context);
                       },
                       splashColor: ColorManager.primary,
                     ),

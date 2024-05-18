@@ -8,6 +8,7 @@ import 'package:parking_app/core/requests/book_ticket_request.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
+import 'package:parking_app/features/auth/presentation/views/screens/login_screen.dart';
 import 'package:parking_app/features/booking/data/models/area_model.dart';
 import 'package:parking_app/features/booking/data/models/garage_model.dart';
 import 'package:parking_app/features/booking/data/models/service_model.dart';
@@ -32,6 +33,13 @@ class BookingCubit extends Cubit<BookingState> {
 
   Future<void> addNumber(int number) async {
     await _appPreferences.addNumber(number);
+    List<int> updatedNumbers = await _appPreferences.loadNumbers();
+
+    emit(state.copyWith(localSlots: updatedNumbers));
+  }
+
+  Future<void> deleteNumber(int number) async {
+    await _appPreferences.deleteNumber(number);
     List<int> updatedNumbers = await _appPreferences.loadNumbers();
 
     emit(state.copyWith(localSlots: updatedNumbers));
@@ -348,5 +356,47 @@ class BookingCubit extends Cubit<BookingState> {
     );
   }
 
-  // void select() {}
+  // delete ticket
+
+  Future<void> deleteTicket({required int ticketId}) async {
+    emit(state.copyWith(
+      isLoading: true,
+      error: "",
+    ));
+    sl<AppPreferences>().getUserId().then((value) {
+      log("userId $value");
+      return _userID = int.tryParse(value!);
+    });
+    final result = await _baseBookingRepo.deleteTicket(
+      ticketId: ticketId,
+      accountId: _userID ?? 1,
+    );
+    deleteNumber(ticketId);
+
+    result.fold(
+      (l) => emit(
+        state.copyWith(
+          isLoading: false,
+          error: l.errorMessage,
+          slotsList: [],
+        ),
+      ),
+      (r) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            error: "${r.statusCode}",
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> logout(context) async {
+    await _appPreferences.logoutUser();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => UserLoginScreen()),
+    );
+  }
 }
