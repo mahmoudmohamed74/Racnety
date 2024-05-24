@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_constants.dart';
-import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 
 class SnackBarWidget extends SnackBar {
   final Color? backGroundColor;
@@ -44,29 +43,29 @@ void customSnackBar({
   );
 }
 
-void showBookingConfirmationDialog(BuildContext context) {
+void showBookingConfirmationDialog({
+  required BuildContext context,
+  required String title,
+  required String content,
+  required String alertText,
+  required void Function()? onPressed,
+}) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Text('Booking Confirmed'),
-        content: const Text(
-          'Your booking has been confirmed successfully.',
+        title: Text(title),
+        content: Text(
+          content,
           textAlign: TextAlign.center,
         ),
         actions: <Widget>[
           TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(); // Close the dialog
-              Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
-                (Route<dynamic> route) => false,
-              );
-            },
-            child: const Text(
-              'OK',
+            onPressed: onPressed,
+            child: Text(
+              alertText,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.green),
+              style: const TextStyle(color: Colors.green),
             ),
           ),
         ],

@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
+import 'package:parking_app/features/booking/data/models/service_model.dart';
+import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/drawer.dart';
 import 'package:parking_app/features/payment/paypal_payment.dart';
 
@@ -16,50 +19,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(
-        title: 'About Us',
+        title: 'Home',
         isBack: false,
-        // isTextButton: true,
-        // textButton: 'LOGOUT',
-        onTap: () {
-          // sl.get<BaseGarageRepo>().getGarages();
-          // sl.get<BaseBookingRepo>().getAreaBySlot(areaId: 1);
-          // sl.get<BaseBookingRepo>().getAreaBySlotDis(areaId: 1);
-          // sl.get<BaseBookingRepo>().getTicketQRCode(ticketId: 9, accountId: 1);
-
-          // sl
-          //     .get<BaseBookingRepo>()
-          //     .deleteTicket(accountId: 1, ticketId: 13)
-          //     .then((value) {
-          //   return sl.get<BaseBookingRepo>().getBookingHist(accountId: 1);
-          // });
-
-          // // sl.get<BaseBookingRepo>().getBookingHist(accountId: 1);
-
-          // sl.get<BaseBookingRepo>().bookTicket(
-          //       bookRequest: BookRequest(
-          //         garageId: 1,
-          //         slotId: 1,
-          //         areaId: 16,
-          //         bookTime: "06:00",
-          //         bookDuration: "30",
-          //         note: "mobile test",
-          //         accountId: 1,
-          //         paymentTypeId: 1,
-          //         bookingDate: DateTime.now(),
-          //       ),
-          //     );
-
-          // sl.get<BaseGarageRepo>().getGaragesInfo();
-          // sl.get<BaseGarageRepo>().getSlotsByGarage(garageId: 1);
-        },
       ),
       drawer: Align(
         alignment: Alignment.topLeft,
-        child: MyDrawer(
-          onTap: () {
-            sl.get<AppPreferences>().clean();
-          },
-        ),
+        child: MyDrawer(),
       ),
       body: Column(
         children: [
@@ -80,17 +45,32 @@ class HomeScreen extends StatelessWidget {
               child: TextButton(
             child: Text('paypal'),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => PaypalPayment(
-                    amount: 20,
-                    orderId: 'orderModel.orderDocId',
-                    earnestIsPaid: false,
-                    priceIsPaid: false,
-                  ),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => PaypalPayment(
+              //       amount: 20,
+              //       orderId: 'orderModel.orderDocId',
+              //       earnestIsPaid: false,
+              //       priceIsPaid: false,
+              //     ),
+              //   ),
+              // );
+
+              // context.read<BookingCubit>().addSlot(
+              //       userId: 2.toString(),
+              //       slot: 2,
+              //     );
+              // context.read<BookingCubit>().addService(
+              //       userId: 2.toString(),
+              //       service: ServiceModel(
+              //         id: 1,
+              //         name: "car wash",
+              //         pic: "",
+              //         serviceCost: 200,
+              //       ),
+              //     );
+              context.read<BookingCubit>().loadServices(userId: 2.toString());
             },
           )
               // Text(

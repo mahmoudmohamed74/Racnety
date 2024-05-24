@@ -11,6 +11,7 @@ import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
 import 'package:parking_app/features/booking/data/models/garage_model.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
+import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/custom_time_widget.dart';
 
 class ConfirmBookingScreen extends StatelessWidget {
@@ -42,7 +43,21 @@ class ConfirmBookingScreen extends StatelessWidget {
               );
             }
             if (state.error == "201") {
-              showBookingConfirmationDialog(context);
+              showBookingConfirmationDialog(
+                context: context,
+                title: 'Booking Confirmed',
+                content: 'Your booking has been confirmed successfully.',
+                alertText: "OK",
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                    (Route<dynamic> route) => false,
+                  );
+                },
+              );
               // customSnackBar(
               //   context: context,
               //   message: "Your Request Is Under Progress",

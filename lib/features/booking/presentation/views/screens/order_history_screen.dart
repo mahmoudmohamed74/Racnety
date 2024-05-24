@@ -7,6 +7,7 @@ import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/loading_widget.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/empty_list_widget.dart';
+import 'package:parking_app/features/booking/presentation/views/widgets/service_history_widget.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/tickets_history_widget.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -95,14 +96,11 @@ class OrderHistoryScreen extends StatelessWidget {
                       },
                       fallback: (context) {
                         return ConditionalBuilder(
-                          condition: state.ticketHistList.isNotEmpty,
+                          condition: state.bookedServices.isNotEmpty,
                           builder: (context) {
-                            return const Text(
-                              "fallback",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: AppSize.s20,
-                                color: Colors.amber,
+                            return Expanded(
+                              child: ServiceHistWidget(
+                                servicesList: state.bookedServices,
                               ),
                             );
                           },

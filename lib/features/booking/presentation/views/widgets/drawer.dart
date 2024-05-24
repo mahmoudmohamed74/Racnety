@@ -7,6 +7,7 @@ import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/features/auth/presentation/controllers/cubit/auth_cubit.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
+import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 
 class MyDrawer extends StatelessWidget {
   final VoidCallback? onTap;
@@ -64,11 +65,11 @@ class MyDrawer extends StatelessWidget {
                   children: [
                     ListTile(
                       leading: Icon(
-                        IconBroken.Profile,
+                        IconBroken.Home,
                         color: ColorManager.black,
                       ),
                       title: Text(
-                        'Profile',
+                        'Home',
                         style: TextStyle(
                           fontSize: AppSize.s16,
                           color: ColorManager.black,
@@ -76,12 +77,13 @@ class MyDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => HelpPage(),
-                        //   ),
-                        // );
+                        Navigator.of(context).pop(); // Close the dialog
+                        Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                            builder: (context) => const HomeScreen(),
+                          ),
+                          (Route<dynamic> route) => false,
+                        );
                       },
                       splashColor: ColorManager.primary,
                     ),

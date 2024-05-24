@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,8 +48,11 @@ class BookingCubit extends Cubit<BookingState> {
 
 //
 
-  void onToggleHistoryScreen(index) {
+  void onToggleHistoryScreen(index) async {
     emit(state.copyWith(isLoading: true, selHistIndex: index));
+    if (index != 0) {
+      await loadServices(userId: _userID.toString());
+    }
     emit(state.copyWith(isLoading: false, selHistIndex: index));
   }
 
@@ -150,8 +154,8 @@ class BookingCubit extends Cubit<BookingState> {
       error: "",
     ));
 
+    // loadNumbers();
     final result = await _baseBookingRepo.getSlotsByArea(areaId: garageId);
-    loadNumbers();
     result.fold(
       (l) => emit(
         state.copyWith(
@@ -180,6 +184,8 @@ class BookingCubit extends Cubit<BookingState> {
       isLoading: true,
       error: "",
     ));
+    await loadSlots();
+
     final result = await _baseBookingRepo.getSlotsByArea(areaId: areaId);
 
     result.fold(
@@ -311,7 +317,8 @@ class BookingCubit extends Cubit<BookingState> {
       isLoading: true,
       error: "",
     ));
-    addNumber(state.selSlot ?? 2);
+    // addNumber(state.selSlot ?? 2);
+    await addSlot(slot: state.selSlot ?? 2);
     final bookRequest = BookRequest(
       garageId: state.selGarage ?? 2,
       slotId: state.selSlot ?? 2,
@@ -356,11 +363,13 @@ class BookingCubit extends Cubit<BookingState> {
   // delete ticket
 
   Future<void> deleteTicket({required int ticketId}) async {
-    emit(state.copyWith(
-      isLoading: true,
-      error: "",
-    ));
-    sl<AppPreferences>().getUserId().then((value) {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: "",
+      ),
+    );
+    await sl<AppPreferences>().getUserId().then((value) {
       log("userId $value");
       return _userID = int.tryParse(value!);
     });
@@ -368,7 +377,10 @@ class BookingCubit extends Cubit<BookingState> {
       ticketId: ticketId,
       accountId: _userID ?? 1,
     );
-    deleteNumber(3);
+    // deleteNumber(3);
+    await deleteSlot(
+      slot: ticketId,
+    );
 
     result.fold(
       (l) => emit(
@@ -388,5 +400,190 @@ class BookingCubit extends Cubit<BookingState> {
         getTicketsHist();
       },
     );
+  }
+
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  Future<void> addSlot({
+    required int slot,
+  }) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: "",
+      ),
+    );
+    DocumentReference userDoc = users.doc("0");
+    DocumentSnapshot docSnapshot = await userDoc.get();
+
+    if (docSnapshot.exists) {
+      List<dynamic> currentSlots = docSnapshot['bookedSlots'];
+      currentSlots.add(slot);
+      await userDoc
+          .update({'bookedSlots': currentSlots})
+          .then((value) => emit(
+                state.copyWith(
+                  isLoading: false,
+                  error: "",
+                ),
+              ))
+          .catchError((onError) {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                error: onError.toString(),
+              ),
+            );
+          });
+    } else {
+      await userDoc
+          .set({
+            'bookedSlots': [slot],
+            'bookedServices': []
+          })
+          .then((value) => emit(
+                state.copyWith(
+                  isLoading: false,
+                  error: "",
+                ),
+              ))
+          .catchError((onError) {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                error: onError.toString(),
+              ),
+            );
+          });
+    }
+  }
+
+  Future<void> addService({
+    required ServiceModel service,
+  }) async {
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: "",
+      ),
+    );
+    print("ssssssssssssssadadasdada $_userID");
+
+    DocumentReference userDoc = users.doc(_userID.toString());
+    DocumentSnapshot docSnapshot = await userDoc.get();
+
+    if (docSnapshot.exists) {
+      List<dynamic> currentServices = docSnapshot['bookedServices'];
+      currentServices.add(service.toJson());
+      await userDoc
+          .update({'bookedServices': currentServices})
+          .then((value) => emit(
+                state.copyWith(
+                  isLoading: false,
+                  error: "",
+                ),
+              ))
+          .catchError((onError) {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                error: onError.toString(),
+              ),
+            );
+          });
+    } else {
+      await userDoc
+          .set({
+            'bookedSlots': [],
+            'bookedServices': [service]
+          })
+          .then((value) => emit(
+                state.copyWith(
+                  isLoading: false,
+                  error: "",
+                ),
+              ))
+          .catchError((onError) {
+            emit(
+              state.copyWith(
+                isLoading: false,
+                error: onError.toString(),
+              ),
+            );
+          });
+    }
+  }
+
+  Future<void> loadSlots() async {
+    DocumentSnapshot docSnapshot = await users.doc("0").get();
+    if (docSnapshot.exists) {
+      List<dynamic> slots = docSnapshot['bookedSlots'];
+      var result = slots.map((slot) => slot as int).toList();
+      emit(state.copyWith(localSlots: result));
+    } else {
+      emit(state.copyWith(localSlots: []));
+    }
+  }
+
+  Future<void> loadServices({
+    required String userId,
+  }) async {
+    print("ssssssssssssssadadasdada $userId");
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: "",
+      ),
+    );
+    DocumentSnapshot docSnapshot = await users.doc(userId).get();
+    if (docSnapshot.exists) {
+      List<dynamic> services = docSnapshot['bookedServices'];
+      final List<ServiceModel> servicesList = services
+          .map((json) => ServiceModel.fromJson(
+                json,
+              ))
+          .toList();
+      print("asdadadadasdadsa $servicesList");
+
+      emit(state.copyWith(isLoading: false, bookedServices: servicesList));
+      print("asdad;la;sdadadasdadsa $servicesList");
+    } else {
+      emit(state.copyWith(isLoading: false, bookedServices: []));
+    }
+  }
+
+  Future<void> deleteSlot({
+    required int slot,
+  }) async {
+    emit(state.copyWith(isLoading: true, error: ""));
+
+    DocumentReference userDoc = users.doc("0");
+    DocumentSnapshot docSnapshot = await userDoc.get();
+
+    if (docSnapshot.exists) {
+      List<dynamic> slots = docSnapshot['bookedSlots'];
+      var result = slots.map((slot) => slot as int).toList();
+      result.remove(slot);
+      await userDoc.update({'bookedSlots': result});
+      emit(state.copyWith(
+        isLoading: false,
+        error: "",
+        localSlots: result,
+      ));
+    }
+  }
+
+  Future<void> deleteService({
+    required String userId,
+    required String service,
+  }) async {
+    DocumentReference userDoc = users.doc(userId);
+    DocumentSnapshot docSnapshot = await userDoc.get();
+
+    if (docSnapshot.exists) {
+      List<dynamic> currentServices = docSnapshot['bookedServices'];
+      currentServices.remove(service);
+      await userDoc.update({'bookedServices': currentServices});
+    }
   }
 }
