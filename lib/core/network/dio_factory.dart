@@ -90,6 +90,7 @@ class DioFactory {
         baseUrl: ApiConstants.baseUrl,
         receiveDataWhenStatusError: true,
         followRedirects: false,
+        // connectTimeout: const Duration(seconds: 900),
       ),
     );
 

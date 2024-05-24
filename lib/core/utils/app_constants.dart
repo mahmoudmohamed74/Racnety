@@ -1,5 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:parking_app/core/assets/app_assets.dart';
+
 class Constants {
   // static const String baseUrl = "http://minafarid246.mocklab.io";
   // static const String empty = "";
@@ -14,7 +16,13 @@ class Constants {
   static const double zeroDouble = 0.0;
   static const List<String> emptyList = [];
   static const bool FALSE = false;
-
+  static const List<String> picList = [
+    ImageAssets.elec,
+    ImageAssets.wiper,
+    ImageAssets.washing_inside,
+    ImageAssets.balanced,
+    ImageAssets.complete,
+  ];
   // static const int apiTimeOut = 60000;
   static bool isLogout = false;
 

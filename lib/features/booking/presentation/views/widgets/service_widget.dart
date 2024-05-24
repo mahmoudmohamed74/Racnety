@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
+import 'package:parking_app/core/utils/app_constants.dart';
 import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/features/booking/data/models/service_model.dart';
 
@@ -17,19 +18,16 @@ class ServiceWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> picList = [
-      ImageAssets.elec,
-      ImageAssets.wiper,
-      ImageAssets.washing_inside,
-      ImageAssets.balanced,
-      ImageAssets.complete,
-    ];
     return InkWell(
       onTap: () {
         Navigator.pushNamed(
           context,
           Routes.confirmServices,
-          arguments: {'serviceModel': serviceModel},
+          arguments: {
+            'serviceModel': serviceModel.copyWith(
+              pic: Constants.picList[index],
+            ),
+          },
         );
         print(serviceModel.name);
         print(serviceModel.serviceCost);
@@ -50,7 +48,7 @@ class ServiceWidget extends StatelessWidget {
                   bottomLeft: Radius.circular(AppSize.s12),
                 ),
                 child: Image.asset(
-                  picList[index],
+                  Constants.picList[index],
                   height: AppSize.s100,
                   width: AppSize.s120,
                   fit: BoxFit.cover,

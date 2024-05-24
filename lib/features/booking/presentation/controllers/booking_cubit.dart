@@ -53,7 +53,7 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   Future<void> getTicketsHist() async {
-    sl<AppPreferences>().getUserId().then((value) {
+    await sl<AppPreferences>().getUserId().then((value) {
       log("userId $value");
       return _userID = int.tryParse(value!);
     });

@@ -140,7 +140,7 @@ class ConfirmServiceScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
-                      "serviceImage",
+                      serviceModel.pic,
                       scale: .7,
                     ),
                   ),
@@ -182,13 +182,17 @@ class ConfirmServiceScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Service Name : ${serviceModel.name}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: ColorManager.black,
-                        fontSize: AppSize.s18,
-                        fontWeight: FontWeight.w600,
+                    Expanded(
+                      child: Text(
+                        'Service Name: ${serviceModel.name}',
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: ColorManager.black,
+                          fontSize: AppSize.s18,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],
