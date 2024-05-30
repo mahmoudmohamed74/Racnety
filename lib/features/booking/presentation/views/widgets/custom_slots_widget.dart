@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/features/booking/data/models/area_model.dart';
@@ -58,13 +59,22 @@ class CustomSlotsWidget extends StatelessWidget {
               //   size: AppSize.s100,
               //   color: ColorManager.black,
               // ),
-              Icon(
-                slotsModel.isDisabled!
-                    ? Icons.accessible_outlined
-                    : Icons.local_parking,
-                size: AppSize.s100,
-                color: ColorManager.black,
-              ),
+              if (slotsModel.isDisabled!)
+                Icon(
+                  Icons.accessible_outlined,
+                  size: AppSize.s100,
+                  color: ColorManager.black,
+                ),
+              if (!slotsModel.isDisabled!)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    ImageAssets.slotImg,
+                    // fit: BoxFit.fill,
+                    height: 80,
+                    width: 80,
+                  ),
+                ),
             ],
           ),
         ),

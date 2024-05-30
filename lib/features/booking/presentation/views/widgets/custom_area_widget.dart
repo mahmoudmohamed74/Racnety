@@ -37,6 +37,7 @@ class CustomAreaWidget extends StatelessWidget {
         ),
         color: ColorManager.white,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
               height: AppSize.s30,

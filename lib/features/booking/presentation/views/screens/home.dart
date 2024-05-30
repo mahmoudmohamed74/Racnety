@@ -26,58 +26,69 @@ class HomeScreen extends StatelessWidget {
         alignment: Alignment.topLeft,
         child: MyDrawer(),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          const SizedBox(
-            height: AppSize.s50,
+          Image.asset(
+            ImageAssets.homeBackGrd,
+            fit: BoxFit.fill,
+            height: double.infinity,
           ),
-          Image(
-            fit: BoxFit.fitHeight,
-            height: AppSize.s150,
-            image: AssetImage(
-              ImageAssets.appLogo,
-            ),
-          ),
-          const SizedBox(
-            height: AppSize.s50,
-          ),
-          Center(
-              child: TextButton(
-            child: Text('paypal'),
-            onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => PaypalPayment(
-              //       amount: 20,
-              //       orderId: 'orderModel.orderDocId',
-              //       earnestIsPaid: false,
-              //       priceIsPaid: false,
-              //     ),
-              //   ),
-              // );
-
-              // context.read<BookingCubit>().addSlot(
-              //       userId: 2.toString(),
-              //       slot: 2,
-              //     );
-              // context.read<BookingCubit>().addService(
-              //       userId: 2.toString(),
-              //       service: ServiceModel(
-              //         id: 1,
-              //         name: "car wash",
-              //         pic: "",
-              //         serviceCost: 200,
-              //       ),
-              //     );
-              context.read<BookingCubit>().loadServices(userId: 2.toString());
-            },
-          )
-              // Text(
-              //   "Parking app for malls is to provide a parking solution \nthat includes features to enhance the parking \nexperience ,parking experience for Shopping Malls.",
-              //   textAlign: TextAlign.center,
-              // ),
+          Column(
+            children: [
+              const SizedBox(
+                height: AppSize.s50,
               ),
+              Image(
+                fit: BoxFit.fitHeight,
+                height: AppSize.s150,
+                image: AssetImage(
+                  ImageAssets.appLogo,
+                ),
+              ),
+              const SizedBox(
+                height: AppSize.s50,
+              ),
+              Center(
+                  child: TextButton(
+                child: Text('paypal'),
+                onPressed: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => PaypalPayment(
+                  //       amount: 20,
+                  //       orderId: 'orderModel.orderDocId',
+                  //       earnestIsPaid: false,
+                  //       priceIsPaid: false,
+                  //     ),
+                  //   ),
+                  // );
+
+                  // context.read<BookingCubit>().addSlot(
+                  //       userId: 2.toString(),
+                  //       slot: 2,
+                  //     );
+                  // context.read<BookingCubit>().addService(
+                  //       userId: 2.toString(),
+                  //       service: ServiceModel(
+                  //         id: 1,
+                  //         name: "car wash",
+                  //         pic: "",
+                  //         serviceCost: 200,
+                  //       ),
+                  //     );
+                  context
+                      .read<BookingCubit>()
+                      .loadServices(userId: 2.toString());
+                },
+              )
+                  // Text(
+                  //   "Parking app for malls is to provide a parking solution \nthat includes features to enhance the parking \nexperience ,parking experience for Shopping Malls.",
+                  //   textAlign: TextAlign.center,
+                  // ),
+                  ),
+            ],
+          ),
         ],
       ),
     );

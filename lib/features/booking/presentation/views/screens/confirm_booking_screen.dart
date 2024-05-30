@@ -13,6 +13,7 @@ import 'package:parking_app/features/booking/data/models/garage_model.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 import 'package:parking_app/features/booking/presentation/views/screens/home.dart';
 import 'package:parking_app/features/booking/presentation/views/widgets/custom_time_widget.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class ConfirmBookingScreen extends StatelessWidget {
   final GarageModel? garageModel;
@@ -75,9 +76,10 @@ class ConfirmBookingScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          ImageAssets.qr,
-                          scale: .7,
+                        child: QrImageView(
+                          data: state.selSlot.toString(),
+                          version: QrVersions.auto,
+                          size: 180.0,
                         ),
                       ),
                     ],

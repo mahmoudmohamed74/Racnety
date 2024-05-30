@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_constants.dart';
@@ -29,8 +28,6 @@ class ServiceWidget extends StatelessWidget {
             ),
           },
         );
-        print(serviceModel.name);
-        print(serviceModel.serviceCost);
       },
       child: SizedBox(
         width: MediaQuery.of(context).size.width * .99,

@@ -1,7 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/strings_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
@@ -11,6 +10,7 @@ import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
 import 'package:parking_app/features/booking/data/models/ticket_model.dart';
 import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class BookingDetailsScreen extends StatelessWidget {
   final TicketModel ticketModel;
@@ -46,9 +46,10 @@ class BookingDetailsScreen extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          ImageAssets.qr,
-                          scale: .9,
+                        child: QrImageView(
+                          data: ticketModel.toString(),
+                          version: QrVersions.auto,
+                          size: 180.0,
                         ),
                       ),
                     ],

@@ -17,7 +17,8 @@ class BookingState extends Equatable {
   final String? duration;
   final String? startTime;
   final String? error;
-
+  final bool? isGeneratingCode;
+  final String? codeString;
   const BookingState({
     required this.selGarage,
     required this.selArea,
@@ -26,6 +27,8 @@ class BookingState extends Equatable {
     required this.isLoading,
     required this.error,
     required this.localSlots,
+    required this.isGeneratingCode,
+    required this.codeString,
     required this.startTime,
     required this.paymentId,
     required this.slotsList,
@@ -43,6 +46,8 @@ class BookingState extends Equatable {
         selGarage = null,
         selArea = null,
         selSlot = null,
+        isGeneratingCode = false,
+        codeString = "",
         selHistIndex = 0,
         startTime = null,
         duration = null,
@@ -60,6 +65,8 @@ class BookingState extends Equatable {
     String? error,
     String? duration,
     String? startTime,
+    bool? isGeneratingCode,
+    String? codeString,
     List<AreaModel>? slotsList,
     List<AreaModel>? areasList,
     List<GarageModel>? garagesList,
@@ -90,6 +97,8 @@ class BookingState extends Equatable {
       slotsList: slotsList ?? this.slotsList,
       areasList: areasList ?? this.areasList,
       garagesList: garagesList ?? this.garagesList,
+      isGeneratingCode: isGeneratingCode ?? this.isGeneratingCode,
+      codeString: codeString ?? this.codeString,
     );
   }
 
@@ -98,6 +107,8 @@ class BookingState extends Equatable {
         isLoading,
         error,
         paymentId,
+        isGeneratingCode,
+        codeString,
         duration,
         startTime,
         slotsList,

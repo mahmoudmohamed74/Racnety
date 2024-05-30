@@ -27,77 +27,87 @@ class BookingSlotsScreen extends StatelessWidget {
             if (state.isLoading) {
               return const Center(child: LoadingWidget());
             }
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            return Stack(
               children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: AppSize.s50,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: ColorManager.white,
-                      borderRadius: BorderRadius.circular(
-                        AppSize.s12,
-                      ),
-                      border: Border.all(
-                        color: ColorManager.black, // Border color
-                        width: 1.0, // Border width
-                      ),
-                    ),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Slots in ${areaModel?.name}',
-                            style: const TextStyle(
-                              fontSize: AppSize.s20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: AppSize.s10,
-                          ),
-                          Image.asset(
-                            ImageAssets.class_,
-                            scale: 1.8,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                Image.asset(
+                  ImageAssets.areaBackGrd,
+                  fit: BoxFit.fill,
+                  height: double.infinity,
                 ),
-                const SizedBox(
-                  height: AppSize.s20,
-                ),
-                ConditionalBuilder(
-                  condition: state.slotsList.isNotEmpty,
-                  builder: (context) => Expanded(
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        right: AppSize.s8,
-                        left: AppSize.s8,
-                      ),
-                      // color: Colors.grey[300],
-                      child: GridView.count(
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        mainAxisSpacing: AppSize.s30,
-                        crossAxisSpacing: AppSize.s30,
-                        crossAxisCount: 2,
-                        childAspectRatio: 1 / 1,
-                        children: List.generate(
-                          state.slotsList.length,
-                          (index) => CustomSlotsWidget(
-                            slotsModel: state.slotsList[index],
-                            localReservedSlots: state.localSlots,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        height: AppSize.s50,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          color: ColorManager.white,
+                          borderRadius: BorderRadius.circular(
+                            AppSize.s12,
+                          ),
+                          border: Border.all(
+                            color: ColorManager.black, // Border color
+                            width: 1.0, // Border width
+                          ),
+                        ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Slots in ${areaModel?.name}',
+                                style: const TextStyle(
+                                  fontSize: AppSize.s20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: AppSize.s10,
+                              ),
+                              Image.asset(
+                                ImageAssets.class_,
+                                scale: 1.8,
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  fallback: (context) => const Text("No slots are available."),
+                    const SizedBox(
+                      height: AppSize.s20,
+                    ),
+                    ConditionalBuilder(
+                      condition: state.slotsList.isNotEmpty,
+                      builder: (context) => Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(
+                            right: AppSize.s8,
+                            left: AppSize.s8,
+                          ),
+                          // color: Colors.grey[300],
+                          child: GridView.count(
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            mainAxisSpacing: AppSize.s30,
+                            crossAxisSpacing: AppSize.s50,
+                            crossAxisCount: 2,
+                            childAspectRatio: 1 / 1,
+                            children: List.generate(
+                              state.slotsList.length,
+                              (index) => CustomSlotsWidget(
+                                slotsModel: state.slotsList[index],
+                                localReservedSlots: state.localSlots,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      fallback: (context) =>
+                          const Text("No slots are available."),
+                    ),
+                  ],
                 ),
               ],
             );
