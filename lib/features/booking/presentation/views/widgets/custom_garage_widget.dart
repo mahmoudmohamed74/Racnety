@@ -123,10 +123,11 @@ class GarageCustomWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.star_border_outlined,
-                        size: AppSize.s30,
-                        color: Colors.green,
+                      Image.asset(
+                        ImageAssets.available,
+                        // fit: BoxFit.fill,
+                        height: 25,
+                        width: 30,
                       ),
                       const SizedBox(
                         width: AppSize.s10,
@@ -142,10 +143,11 @@ class GarageCustomWidget extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      const Icon(
-                        Icons.star,
-                        size: AppSize.s30,
-                        color: Colors.red,
+                      Image.asset(
+                        ImageAssets.reserved,
+                        // fit: BoxFit.fill,
+                        height: 25,
+                        width: 30,
                       ),
                       const SizedBox(
                         width: AppSize.s10,

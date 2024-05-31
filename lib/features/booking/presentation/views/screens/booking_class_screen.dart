@@ -20,10 +20,7 @@ class BookingClassScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        title: '',
-        isBack: true,
-      ),
+      appBar: null,
       body: BlocConsumer<BookingCubit, BookingState>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -33,13 +30,17 @@ class BookingClassScreen extends StatelessWidget {
           return Stack(
             children: [
               Image.asset(
-                ImageAssets.areaBackGrd,
+                ImageAssets.homeBackGrd,
                 fit: BoxFit.fill,
                 height: double.infinity,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  AppBarWidget(
+                    title: '',
+                    isBack: true,
+                  ),
                   Align(
                     alignment: Alignment.center,
                     child: Container(
@@ -78,38 +79,39 @@ class BookingClassScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: AppSize.s20,
-                  ),
+                  // const SizedBox(
+                  //   height: AppSize.s10,
+                  // ),
                   ConditionalBuilder(
                     condition: state.areasList.isNotEmpty,
                     builder: (context) => Expanded(
-                      child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2, // Number of items per row
-                          crossAxisSpacing: 50, // Spacing between columns
-                          mainAxisSpacing: 8, // Spacing between rows
-                        ),
+                      child:
+                          // GridView.builder(
+                          //   gridDelegate:
+                          //       const SliverGridDelegateWithFixedCrossAxisCount(
+                          //     crossAxisCount: 2, // Number of items per row
+                          //     crossAxisSpacing: 50, // Spacing between columns
+                          //     mainAxisSpacing: 8, // Spacing between rows
+                          //   ),
+                          //   itemCount: state.areasList.length,
+                          //   itemBuilder: (BuildContext context, int index) =>
+                          //       CustomAreaWidget(
+                          //     areaModel: state.areasList[index],
+                          //   ),
+                          // ),
+
+                          ListView.separated(
+                        physics: const BouncingScrollPhysics(),
                         itemCount: state.areasList.length,
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const SizedBox(
+                          height: AppSize.s5,
+                        ),
                         itemBuilder: (BuildContext context, int index) =>
                             CustomAreaWidget(
                           areaModel: state.areasList[index],
                         ),
                       ),
-
-                      // ListView.separated(
-                      //   physics: const BouncingScrollPhysics(),
-                      //   itemCount: state.areasList.length,
-                      //   separatorBuilder: (BuildContext context, int index) =>
-                      //       const SizedBox(
-                      //     height: AppSize.s5,
-                      //   ),
-                      //   itemBuilder: (BuildContext context, int index) =>
-                      //       CustomAreaWidget(
-                      //     areaModel: state.areasList[index],
-                      //   ),
-                      // ),
                     ),
                     fallback: (context) =>
                         const Text("No areas are available."),

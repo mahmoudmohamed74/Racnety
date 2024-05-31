@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 
 class LoadingWidget extends StatelessWidget {
@@ -6,8 +7,17 @@ class LoadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircularProgressIndicator(
-      color: ColorManager.primary,
-    );
+    return Stack(children: [
+      Image.asset(
+        ImageAssets.homeBackGrd,
+        fit: BoxFit.fill,
+        height: double.infinity,
+      ),
+      Center(
+        child: CircularProgressIndicator(
+          color: ColorManager.primary,
+        ),
+      ),
+    ]);
   }
 }

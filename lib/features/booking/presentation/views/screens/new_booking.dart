@@ -16,10 +16,6 @@ class NewBookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        title: 'New Booking',
-        isBack: false,
-      ),
       drawer: Align(
         alignment: Alignment.topLeft,
         child: MyDrawer(
@@ -43,6 +39,10 @@ class NewBookingScreen extends StatelessWidget {
               ),
               Column(
                 children: [
+                  AppBarWidget(
+                    title: 'New Booking',
+                    isBack: false,
+                  ),
                   const SizedBox(
                     height: AppSize.s12,
                   ),

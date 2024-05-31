@@ -22,6 +22,10 @@ class ImageAssets {
   static const String homeBackGrd = "$IMAGE_PATH/home.jpg";
   static const String areaBackGrd = "$IMAGE_PATH/area_back.jpg";
   static const String changeOilSer = "$IMAGE_PATH/changeoil.jpg";
+  static const String accParking = "$IMAGE_PATH/parking.png";
+  static const String available = "$IMAGE_PATH/available.png";
+  static const String reserved = "$IMAGE_PATH/reserved.png";
+  static const String darkLogo = "$IMAGE_PATH/dark_logo.png";
 }
 
 class JsonAssets {

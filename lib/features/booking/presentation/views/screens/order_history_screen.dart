@@ -17,10 +17,6 @@ class OrderHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        title: 'Order History',
-        isBack: true,
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: AppSize.s15,
@@ -32,6 +28,10 @@ class OrderHistoryScreen extends StatelessWidget {
           builder: (context, state) {
             return Column(
               children: [
+                AppBarWidget(
+                  title: 'Order History',
+                  isBack: true,
+                ),
                 const SizedBox(
                   height: AppSize.s20,
                 ),
