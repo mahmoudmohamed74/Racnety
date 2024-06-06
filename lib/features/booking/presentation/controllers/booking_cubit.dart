@@ -273,9 +273,11 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   int? _userID;
-  Future<void> bookTicket({
-    required String? notes,
-  }) async {
+  final TextEditingController instructionController = TextEditingController();
+
+  Future<void> bookTicket(
+      // {required String? notes}
+      ) async {
     if (state.duration == null || state.duration!.isEmpty) {
       emit(state.copyWith(
         isLoading: false,
@@ -325,7 +327,7 @@ class BookingCubit extends Cubit<BookingState> {
       areaId: state.selArea ?? 2,
       bookTime: state.startTime ?? "",
       bookDuration: state.duration ?? "",
-      note: notes ?? "",
+      note: instructionController.text,
       accountId: _userID ?? 0,
       paymentTypeId: state.paymentId ?? 3,
       bookingDate: DateTime.now(),

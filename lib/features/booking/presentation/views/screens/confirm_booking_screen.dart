@@ -5,7 +5,6 @@ import 'package:parking_app/core/assets/app_assets.dart';
 import 'package:parking_app/core/global/resources/strings_manger.dart';
 import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
-import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
 import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
@@ -24,8 +23,6 @@ class ConfirmBookingScreen extends StatelessWidget {
   final TextEditingController startTimeController = TextEditingController();
   final TextEditingController durationTimeController = TextEditingController();
   final TextEditingController paymentController = TextEditingController();
-
-  final TextEditingController instructionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -337,7 +334,15 @@ class ConfirmBookingScreen extends StatelessWidget {
                           ),
                           Expanded(
                             child: TextFormField(
-                              controller: instructionController,
+                              controller: context
+                                  .read<BookingCubit>()
+                                  .instructionController,
+                              onChanged: (value) {
+                                context
+                                    .read<BookingCubit>()
+                                    .instructionController
+                                    .text = value;
+                              },
                               keyboardType: TextInputType.text,
                               textAlign: TextAlign.center,
                               decoration: const InputDecoration(
@@ -418,37 +423,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                               context: context,
                               email: 'email@test.com');
                         } else {
-                          context.read<BookingCubit>().bookTicket(
-                                notes: instructionController.text,
-                              );
-                          if (state.error == "200" || state.error == "201") {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  content: const Text(
-                                    'Your Booking made Successfull\nWe are Waiting You',
-                                    style: TextStyle(
-                                      fontSize: AppSize.s16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text('ALRIGHT'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                            Future.delayed(const Duration(seconds: 2), () {
-                              Navigator.pushReplacementNamed(
-                                  context, Routes.homeView);
-                            });
-                          }
+                          context.read<BookingCubit>().bookTicket();
                         }
                       },
                     ),

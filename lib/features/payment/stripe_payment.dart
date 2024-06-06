@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
 import 'package:parking_app/core/widgets/snack_bar_widget.dart';
+import 'package:parking_app/features/booking/presentation/controllers/booking_cubit.dart';
 
 Future<void> initPayment({
   required String email,
@@ -44,6 +46,7 @@ Future<void> initPayment({
         backGroundColor: Colors.green,
       ),
     );
+    context.read<BookingCubit>().bookTicket();
   } catch (error) {
     if (error is StripeException) {
       ScaffoldMessenger.of(context).showSnackBar(
