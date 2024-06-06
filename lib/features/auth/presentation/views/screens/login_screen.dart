@@ -12,7 +12,6 @@ import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/utils/functions.dart';
 import 'package:parking_app/core/utils/service_locator.dart';
-import 'package:parking_app/core/widgets/loading_widget.dart';
 import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
 import 'package:parking_app/features/auth/presentation/controllers/cubit/auth_cubit.dart';
@@ -43,7 +42,8 @@ class UserLoginScreen extends StatelessWidget {
                 await _appPreferences.setIsUserLoggedIn();
                 await _appPreferences
                     .saveUserId(state.userModel!.userId!.toString());
-
+                await _appPreferences
+                    .saveUserToken(state.userModel!.tokenType!);
                 Navigator.pushReplacementNamed(
                   context,
                   Routes.homeView,
@@ -55,16 +55,6 @@ class UserLoginScreen extends StatelessWidget {
                   message: "user login error",
                   isError: true,
                 );
-                // SnackBarWidget(
-                //   text: Text(
-                //     "user login error",
-                //     style: TextStyle(
-                //       color: ColorManager.white,
-                //       fontSize: AppSize.s16,
-                //     ),
-                //   ),
-                //   backGroundColor: ColorManager.error,
-                // );
               }
             },
             builder: (context, state) {

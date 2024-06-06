@@ -1,10 +1,9 @@
-// ignore_for_file: constant_identifier_names, avoid_print
-
-import 'dart:convert';
+// ignore_for_file: constant_identifier_names
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:parking_app/core/network/api_constants.dart';
+import 'package:parking_app/core/utils/app_pref.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 const String APPLICATION_JSON = "application/json";
@@ -26,10 +25,8 @@ const String username = '11170654';
 const String password = '60-dayfreetrial';
 
 class DioFactory {
-  // final AppPreferences _appPreferences;
-  DioFactory(
-      // this._appPreferences
-      );
+  final AppPreferences _appPreferences;
+  DioFactory(this._appPreferences);
 
   Map<String, String> headers = {
     CONTENT_TYPE: APPLICATION_JSON,
@@ -67,7 +64,7 @@ class DioFactory {
     );
 
     dio.options.headers = {
-      'Authorization': 'Bearer $token',
+      "Authorization": "Bearer ${await _appPreferences.getUserToken()}",
     };
 
     return await dio.get(
@@ -107,7 +104,7 @@ class DioFactory {
     );
 
     dio.options.headers = {
-      'Authorization': 'Bearer $token',
+      "Authorization": "Bearer ${await _appPreferences.getUserToken()}",
     };
 
     return await dio.post(
@@ -145,13 +142,9 @@ class DioFactory {
       ),
     );
 
-    final String basicAuth =
-        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
-
     dio.options.headers = {
-      'Authorization': basicAuth,
+      "Authorization": "Bearer ${await _appPreferences.getUserToken()}",
     };
-
     return await dio.put(
       endPoint,
       data: data,
@@ -186,11 +179,8 @@ class DioFactory {
         },
       ),
     );
-    final String basicAuth =
-        'Basic ${base64Encode(utf8.encode('$username:$password'))}';
-
     dio.options.headers = {
-      'Authorization': basicAuth,
+      "Authorization": "Bearer ${await _appPreferences.getUserToken()}",
     };
 
     return await dio.delete(
