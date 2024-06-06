@@ -7,7 +7,6 @@ import 'package:parking_app/core/global/resources/values_manger.dart';
 import 'package:parking_app/core/themes/color_manager.dart';
 import 'package:parking_app/core/utils/app_router.dart';
 import 'package:parking_app/core/widgets/app_bar_widget.dart';
-import 'package:parking_app/core/widgets/loading_widget.dart';
 import 'package:parking_app/core/widgets/snack_bar_widget.dart';
 import 'package:parking_app/core/widgets/text_button_widget.dart';
 import 'package:parking_app/features/booking/data/models/garage_model.dart';

@@ -21,7 +21,7 @@ class ServicesLocator {
     sl.registerLazySingleton<AppPreferences>(() => AppPreferences(sl()));
 
     sl.registerLazySingleton<ApiService>(() => ApiService(Dio()));
-    sl.registerLazySingleton<DioFactory>(() => DioFactory());
+    sl.registerLazySingleton<DioFactory>(() => DioFactory(sl()));
     sl.registerLazySingleton<BaseTestApi>(() => TestApiImpl(sl()));
     sl.registerLazySingleton<BaseAuthRepo>(() => AuthRepoImpl(sl(), sl()));
     sl.registerLazySingleton<BaseBookingRepo>(() => BookingRepoImpl(
